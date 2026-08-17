@@ -1,9 +1,12 @@
 "use server";
 
+import { randomBytes } from "node:crypto";
+import { headers } from "next/headers";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { calculateTotals, SHIPPING_METHODS } from "@/lib/types";
 import { sendOrderConfirmationEmail } from "@/lib/email";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 const schema = z.object({
   lines: z
@@ -31,11 +34,28 @@ const schema = z.object({
 type PlaceOrderInput = z.infer<typeof schema>;
 
 function generateOrderNumber() {
-  const random = Math.random().toString(36).slice(2, 7).toUpperCase();
-  return `MER-${Date.now().toString(36).toUpperCase()}${random}`;
+  const date = new Date();
+  const datePart = `${date.getUTCFullYear()}${String(date.getUTCMonth() + 1).padStart(2, "0")}${String(date.getUTCDate()).padStart(2, "0")}`;
+  // 80 bits of CSPRNG entropy — the order number doubles as the bearer token
+  // for the guest order-confirmation lookup, so it must not be guessable.
+  const token = randomBytes(10).toString("hex").toUpperCase();
+  return `MER-${datePart}-${token}`;
 }
 
 export async function placeOrder(input: PlaceOrderInput) {
+  const requestHeaders = await headers();
+  const ip =
+    requestHeaders.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    requestHeaders.get("x-real-ip") ??
+    "unknown";
+
+  if (!checkRateLimit(`placeOrder:${ip}`, 5, 10 * 60 * 1000)) {
+    return {
+      ok: false as const,
+      message: "Too many orders placed recently. Please try again in a few minutes.",
+    };
+  }
+
   const parsed = schema.safeParse(input);
   if (!parsed.success) {
     return { ok: false as const, message: "Some details are missing or invalid." };
