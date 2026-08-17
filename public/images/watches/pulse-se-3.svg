@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1125" width="900" height="1125" role="img">
+  <defs>
+    
+    <linearGradient id="metal-pulsesec" x1="0.1" y1="0" x2="0.95" y2="1">
+      <stop offset="0%" stop-color="#c7c9cf"/>
+      <stop offset="16%" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="30%" stop-color="#c7c9cf"/>
+      <stop offset="58%" stop-color="#75777d"/>
+      <stop offset="80%" stop-color="#c7c9cf"/>
+      <stop offset="100%" stop-color="#75777d"/>
+    </linearGradient>
+    <radialGradient id="dial-pulsesec" cx="42%" cy="34%" r="78%">
+      <stop offset="0%" stop-color="#050608"/>
+      <stop offset="100%" stop-color="#08161a"/>
+    </radialGradient>
+    <linearGradient id="strap-pulsesec" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1c1c1e"/>
+      <stop offset="100%" stop-color="#0e0e10"/>
+    </linearGradient>
+    <linearGradient id="glare-pulsesec" x1="0.05" y1="0" x2="0.9" y2="0.95">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3"/>
+      <stop offset="22%" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="40%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="68%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="76%" stop-color="#ffffff" stop-opacity="0.12"/>
+      <stop offset="84%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="vignette-pulsesec" cx="50%" cy="42%" r="72%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="65%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.22"/>
+    </radialGradient>
+    <filter id="blur-pulsesec" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <linearGradient id="bg-pulsesec" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#08140f"/>
+      <stop offset="100%" stop-color="#123d2f"/>
+    </linearGradient>
+    <filter id="shadow-pulsesec" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="900" height="1125" fill="url(#bg-pulsesec)"/>
+  <g filter="url(#shadow-pulsesec)">
+    <!-- side profile: band sweeping in from both edges into a thin case band -->
+    <path d="M 40 712.5 Q 250 682.5 330 596.5 L 330 636.5 Q 240 732.5 40 758.5 Z" fill="url(#strap-pulsesec)"/>
+    <path d="M 860 712.5 Q 650 682.5 570 596.5 L 570 636.5 Q 660 732.5 860 758.5 Z" fill="url(#strap-pulsesec)"/>
+    <rect x="320" y="516.5" width="260" height="92" rx="22" fill="url(#metal-pulsesec)"/>
+    <rect x="320" y="516.5" width="260" height="26" rx="12" fill="#08161a" fill-opacity="0.5"/>
+    <rect x="330" y="510.5" width="240" height="14" rx="7" fill="#050608" fill-opacity="0.85"/>
+    <rect x="580" y="548.5" width="34" height="28" rx="7" fill="url(#metal-pulsesec)"/>
+    <rect x="352" y="578.5" width="196" height="8" rx="4" fill="#000" opacity="0.15"/>
+  </g>
+  <text x="450" y="1035" fill="#ffffff" fill-opacity="0.4" font-family="Helvetica,Arial,sans-serif" font-size="15" letter-spacing="4" text-anchor="middle">CASE PROFILE</text>
+</svg>
