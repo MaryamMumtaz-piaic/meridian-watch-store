@@ -10,10 +10,10 @@ export function CraftsmanshipTeaser() {
         </div>
         <div className="lg:order-1">
           <span className="eyebrow text-gold-bright">Savoir-Faire</span>
-          <h2 className="mt-4 max-w-md font-serif text-3xl leading-tight sm:text-4xl">
+          <h2 className="mt-4 max-w-md font-serif font-semibold text-3xl leading-tight sm:text-4xl">
             Every movement, hand-finished.
           </h2>
-          <p className="mt-5 max-w-md text-sm leading-relaxed text-parchment/70">
+          <p className="mt-5 max-w-sm border-l border-gold-bright/50 pl-4 text-sm leading-[1.85] text-parchment/70">
             Each caliber passes through the same bench for three days —
             beveled by hand, regulated in five positions, and tested for two
             weeks before it earns the Maison Temps mark on its bridge.

@@ -30,8 +30,8 @@ export function ServicePillars() {
         {SERVICES.map((service) => (
           <div key={service.title}>
             <service.icon className="h-6 w-6 text-gold" strokeWidth={1.25} />
-            <h3 className="mt-4 font-serif text-lg text-foreground">{service.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-stone">{service.body}</p>
+            <h3 className="mt-4 font-serif font-semibold text-lg text-foreground">{service.title}</h3>
+            <p className="mt-2 border-l border-gold/35 pl-3 text-sm leading-[1.8] text-stone">{service.body}</p>
           </div>
         ))}
       </div>

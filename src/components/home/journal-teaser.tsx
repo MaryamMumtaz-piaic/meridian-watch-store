@@ -27,7 +27,7 @@ export function JournalTeaser() {
       <div className="flex items-end justify-between gap-6">
         <div>
           <span className="eyebrow">The Journal</span>
-          <h2 className="mt-4 font-serif text-3xl text-foreground sm:text-4xl">
+          <h2 className="mt-4 font-serif font-semibold text-3xl text-foreground sm:text-4xl">
             Notes from the Maison.
           </h2>
         </div>
@@ -46,8 +46,8 @@ export function JournalTeaser() {
             <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.14em] text-gold">
               {post.category}
             </p>
-            <h3 className="mt-2 font-serif text-lg leading-snug text-foreground">{post.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-stone">{post.excerpt}</p>
+            <h3 className="mt-2 font-serif font-semibold text-lg leading-snug text-foreground">{post.title}</h3>
+            <p className="mt-3 border-l border-gold/40 pl-3 text-sm leading-[1.8] text-stone">{post.excerpt}</p>
           </Link>
         ))}
       </div>

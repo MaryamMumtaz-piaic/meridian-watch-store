@@ -147,6 +147,7 @@
   h3,
   h4 {
     @apply font-serif;
+    letter-spacing: 0.01em;
   }
 }
 
@@ -179,5 +180,25 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-hero-fade {
     animation: none;
+  }
+}
+
+/* Collections — infinite left-to-right marquee */
+/* 4 copies in track → animate exactly 1/4 (one set) for gapless infinite loop */
+@keyframes marquee-ltr {
+  from { transform: translateX(-25%); }
+  to   { transform: translateX(0%); }
+}
+.collections-marquee {
+  animation: marquee-ltr 36s linear infinite;
+}
+.collections-marquee-wrap:hover .collections-marquee {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .collections-marquee {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

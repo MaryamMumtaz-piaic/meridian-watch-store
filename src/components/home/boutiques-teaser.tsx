@@ -13,10 +13,10 @@ export function BoutiquesTeaser() {
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-2 lg:px-10 lg:py-28">
         <div>
           <span className="eyebrow">Boutiques</span>
-          <h2 className="mt-4 max-w-md font-serif text-3xl text-foreground sm:text-4xl">
+          <h2 className="mt-4 max-w-md font-serif font-semibold text-3xl text-foreground sm:text-4xl">
             See it, try it, on your wrist.
           </h2>
-          <p className="mt-5 max-w-md text-sm leading-relaxed text-stone">
+          <p className="mt-5 max-w-sm border-l border-gold/40 pl-4 text-sm leading-[1.85] text-stone">
             Book a private appointment at one of our boutiques for a fitting,
             an engraving consultation, or simply to see the finishing in
             person.

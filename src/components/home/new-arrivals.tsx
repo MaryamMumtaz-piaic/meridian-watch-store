@@ -17,7 +17,7 @@ export async function NewArrivals() {
       <div className="flex items-end justify-between gap-6">
         <div>
           <span className="eyebrow">New Arrivals</span>
-          <h2 className="mt-4 font-serif text-3xl text-foreground sm:text-4xl">
+          <h2 className="mt-4 font-serif font-semibold text-3xl text-foreground sm:text-4xl">
             Just added to the case.
           </h2>
         </div>
