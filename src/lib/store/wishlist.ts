@@ -1,32 +1,39 @@
-"use client";
-
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-type WishlistState = {
-  slugs: string[];
-  toggle: (slug: string) => void;
-  has: (slug: string) => boolean;
-  clear: () => void;
+export type WishlistItem = {
+  productId: string;
+  slug: string;
+  name: string;
+  priceCents: number;
+  image: string;
 };
 
-/**
- * Wishlist is kept client-side so guests can use it. When a user signs in,
- * `SyncWishlist` pushes these slugs to their account row.
- */
-export const useWishlist = create<WishlistState>()(
+type WishlistState = {
+  items: WishlistItem[];
+  toggle: (item: WishlistItem) => void;
+  isSaved: (productId: string) => boolean;
+};
+
+export const useWishlistStore = create<WishlistState>()(
   persist(
     (set, get) => ({
-      slugs: [],
-      toggle: (slug) =>
-        set((state) => ({
-          slugs: state.slugs.includes(slug)
-            ? state.slugs.filter((s) => s !== slug)
-            : [...state.slugs, slug],
-        })),
-      has: (slug) => get().slugs.includes(slug),
-      clear: () => set({ slugs: [] }),
+      items: [],
+      toggle: (item) =>
+        set((state) => {
+          const exists = state.items.some((i) => i.productId === item.productId);
+          return {
+            items: exists
+              ? state.items.filter((i) => i.productId !== item.productId)
+              : [...state.items, item],
+          };
+        }),
+      isSaved: (productId) => get().items.some((i) => i.productId === productId),
     }),
-    { name: "maison-temps-wishlist" },
-  ),
+    { name: "maison-temps-wishlist" }
+  )
 );
+
+export function useWishlistCount() {
+  return useWishlistStore((state) => state.items.length);
+}

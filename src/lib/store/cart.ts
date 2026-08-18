@@ -1,83 +1,56 @@
-"use client";
-
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { CartLine } from "@/lib/types";
 
-type CartState = {
-  lines: CartLine[];
-  isOpen: boolean;
-  add: (line: Omit<CartLine, "quantity">, quantity?: number) => void;
-  remove: (productId: string) => void;
-  setQuantity: (productId: string, quantity: number) => void;
-  clear: () => void;
-  open: () => void;
-  close: () => void;
+export type CartItem = {
+  productId: string;
+  slug: string;
+  name: string;
+  priceCents: number;
+  image: string;
+  quantity: number;
 };
 
-export const useCart = create<CartState>()(
+type CartState = {
+  items: CartItem[];
+  addItem: (item: Omit<CartItem, "quantity">, quantity?: number) => void;
+  removeItem: (productId: string) => void;
+  setQuantity: (productId: string, quantity: number) => void;
+  clear: () => void;
+};
+
+export const useCartStore = create<CartState>()(
   persist(
     (set) => ({
-      lines: [],
-      isOpen: false,
-
-      add: (line, quantity = 1) =>
+      items: [],
+      addItem: (item, quantity = 1) =>
         set((state) => {
-          const existing = state.lines.find(
-            (l) => l.productId === line.productId,
-          );
+          const existing = state.items.find((i) => i.productId === item.productId);
           if (existing) {
             return {
-              isOpen: true,
-              lines: state.lines.map((l) =>
-                l.productId === line.productId
-                  ? {
-                      ...l,
-                      quantity: Math.min(l.quantity + quantity, l.stock),
-                    }
-                  : l,
+              items: state.items.map((i) =>
+                i.productId === item.productId
+                  ? { ...i, quantity: i.quantity + quantity }
+                  : i
               ),
             };
           }
-          return {
-            isOpen: true,
-            lines: [
-              ...state.lines,
-              { ...line, quantity: Math.min(quantity, line.stock) },
-            ],
-          };
+          return { items: [...state.items, { ...item, quantity }] };
         }),
-
-      remove: (productId) =>
-        set((state) => ({
-          lines: state.lines.filter((l) => l.productId !== productId),
-        })),
-
+      removeItem: (productId) =>
+        set((state) => ({ items: state.items.filter((i) => i.productId !== productId) })),
       setQuantity: (productId, quantity) =>
         set((state) => ({
-          lines: state.lines.map((l) =>
-            l.productId === productId
-              ? { ...l, quantity: Math.max(1, Math.min(quantity, l.stock)) }
-              : l,
-          ),
+          items:
+            quantity <= 0
+              ? state.items.filter((i) => i.productId !== productId)
+              : state.items.map((i) => (i.productId === productId ? { ...i, quantity } : i)),
         })),
-
-      clear: () => set({ lines: [] }),
-      open: () => set({ isOpen: true }),
-      close: () => set({ isOpen: false }),
+      clear: () => set({ items: [] }),
     }),
-    {
-      name: "maison-temps-cart",
-      // Drawer visibility is UI state — never restore it on reload.
-      partialize: (state) => ({ lines: state.lines }),
-    },
-  ),
+    { name: "maison-temps-cart" }
+  )
 );
 
-export function cartCount(lines: CartLine[]) {
-  return lines.reduce((sum, l) => sum + l.quantity, 0);
-}
-
-export function cartSubtotal(lines: CartLine[]) {
-  return lines.reduce((sum, l) => sum + l.priceCents * l.quantity, 0);
+export function useCartCount() {
+  return useCartStore((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
 }

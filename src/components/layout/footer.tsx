@@ -1,46 +1,72 @@
 import Link from "next/link";
-import { footerNav, site } from "@/lib/site";
-import { Container } from "@/components/ui/section";
 import { NewsletterForm } from "@/components/layout/newsletter-form";
-import {
-  InstagramIcon,
-  YoutubeIcon,
-  LinkedinIcon,
-} from "@/components/layout/social-icons";
+import { InstagramIcon, FacebookIcon, YoutubeIcon } from "@/components/icons/social";
+
+const SITEMAP: { heading: string; links: { href: string; label: string }[] }[] = [
+  {
+    heading: "Shop",
+    links: [
+      { href: "/collections", label: "Collections" },
+      { href: "/watches", label: "All Watches" },
+      { href: "/wishlist", label: "Wishlist" },
+    ],
+  },
+  {
+    heading: "The Maison",
+    links: [
+      { href: "/about", label: "Our Story" },
+      { href: "/craftsmanship", label: "Craftsmanship" },
+      { href: "/journal", label: "Journal" },
+      { href: "/boutiques", label: "Boutiques" },
+    ],
+  },
+  {
+    heading: "Support",
+    links: [
+      { href: "/contact", label: "Contact Us" },
+      { href: "/faq", label: "FAQ" },
+      { href: "/services", label: "Warranty & Repair" },
+    ],
+  },
+  {
+    heading: "Legal",
+    links: [
+      { href: "/privacy", label: "Privacy Policy" },
+      { href: "/terms", label: "Terms of Service" },
+      { href: "/shipping-returns", label: "Shipping & Returns" },
+    ],
+  },
+];
 
 export function Footer() {
   return (
-    <footer className="mt-auto bg-ink text-cream">
-      <Container className="py-20 lg:py-24">
-        <div className="grid gap-16 lg:grid-cols-[1.1fr_2fr]">
+    <footer className="bg-ink text-parchment">
+      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+        <div className="grid gap-12 border-b border-white/10 pb-14 lg:grid-cols-[1.4fr_2fr]">
           <div>
-            <p className="font-display text-2xl tracking-[0.14em]">
-              MERIDIAN
+            <span className="eyebrow text-gold-bright">Stay in time</span>
+            <h2 className="mt-4 font-serif text-3xl leading-tight text-parchment">
+              Set your time.
+            </h2>
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-parchment/70">
+              New references, atelier stories, and boutique invitations —
+              sent a few times a year, never more.
             </p>
-            <p className="mt-2 text-[0.5625rem] tracking-[0.42em] text-cream/45">
-              SAN FRANCISCO · EST. {site.established}
-            </p>
-            <p className="mt-8 max-w-xs text-sm leading-relaxed text-cream/55">
-              Precision-engineered smart watches — health intelligence and
-              all-day battery, built to disappear on the wrist.
-            </p>
-
-            <div className="mt-10">
-              <p className="eyebrow mb-4 text-gold-light">Product Updates</p>
-              <NewsletterForm />
-            </div>
+            <NewsletterForm />
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {footerNav.map((column) => (
-              <div key={column.title}>
-                <p className="eyebrow mb-6 text-cream/45">{column.title}</p>
-                <ul className="space-y-3.5">
-                  {column.links.map((link) => (
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+            {SITEMAP.map((group) => (
+              <div key={group.heading}>
+                <h3 className="text-xs font-medium uppercase tracking-[0.14em] text-parchment/50">
+                  {group.heading}
+                </h3>
+                <ul className="mt-4 space-y-3">
+                  {group.links.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="link-underline text-sm text-cream/75 transition-colors hover:text-gold-light"
+                        className="text-sm text-parchment/80 transition-colors hover:text-gold-bright"
                       >
                         {link.label}
                       </Link>
@@ -52,46 +78,41 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-20 flex flex-col gap-6 border-t border-cream/12 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-cream/40">
-            © {site.established}–2026 Meridian, Inc. All rights reserved.
+        <div className="flex flex-col items-center gap-6 pt-8 sm:flex-row sm:justify-between">
+          <p className="text-xs tracking-wide text-parchment/50">
+            © {new Date().getFullYear()} Maison Temps. All rights reserved.
           </p>
-
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-5">
             <a
-              href={site.social.instagram}
+              href="https://instagram.com"
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener noreferrer"
               aria-label="Instagram"
-              className="text-cream/55 transition-colors hover:text-gold-light"
+              className="cursor-pointer text-parchment/70 transition-colors hover:text-gold-bright"
             >
-              <InstagramIcon className="h-4 w-4" />
+              <InstagramIcon className="h-[18px] w-[18px]" />
             </a>
             <a
-              href={site.social.youtube}
+              href="https://facebook.com"
               target="_blank"
-              rel="noreferrer noopener"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="cursor-pointer text-parchment/70 transition-colors hover:text-gold-bright"
+            >
+              <FacebookIcon className="h-[18px] w-[18px]" />
+            </a>
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="YouTube"
-              className="text-cream/55 transition-colors hover:text-gold-light"
+              className="cursor-pointer text-parchment/70 transition-colors hover:text-gold-bright"
             >
-              <YoutubeIcon className="h-4 w-4" />
-            </a>
-            <a
-              href={site.social.linkedin}
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="LinkedIn"
-              className="text-cream/55 transition-colors hover:text-gold-light"
-            >
-              <LinkedinIcon className="h-4 w-4" />
+              <YoutubeIcon className="h-[18px] w-[18px]" />
             </a>
           </div>
-
-          <p className="text-xs text-cream/40">
-            {site.phone} · {site.email}
-          </p>
         </div>
-      </Container>
+      </div>
     </footer>
   );
 }

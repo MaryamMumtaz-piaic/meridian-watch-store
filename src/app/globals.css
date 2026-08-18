@@ -1,167 +1,183 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-@theme {
-  /* Palette — void black, paper white, Ion Blue signature accent.
-     Token names kept from the original build (ink/cream/gold/stone) so
-     every component that references them repaints for the new brand
-     without a mechanical find-and-replace across the whole tree. */
-  --color-ink: #0a0a0c;
-  --color-ink-soft: #16171c;
-  --color-ink-muted: #26272e;
-  --color-cream: #fafafa;
-  --color-cream-dark: #f0f1f3;
-  --color-sand: #d8dade;
-  --color-gold: #3d5cff;
-  --color-gold-light: #7d95ff;
-  --color-gold-dark: #2a3fcc;
-  --color-stone: #6b6f76;
-  --color-stone-light: #9a9da4;
+@custom-variant dark (&:is(.dark *));
 
-  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-
-  --ease-luxe: cubic-bezier(0.16, 1, 0.3, 1);
-
-  --animate-fade-up: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
-  --animate-fade-in: fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
-
-  @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY(24px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes shimmer {
-    from {
-      background-position: -200% 0;
-    }
-    to {
-      background-position: 200% 0;
-    }
-  }
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+  --font-heading: var(--font-playfair);
+  --font-mono: var(--font-jetbrains-mono);
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
+  --color-ink: var(--ink);
+  --color-parchment: var(--parchment);
+  --color-stone: var(--stone);
+  --color-hairline: var(--hairline);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
 :root {
-  --header-height: 5.5rem;
+  /* Maison Temps brand tokens — ink / parchment / gold */
+  --ink: #1c1917;
+  --parchment: #faf8f4;
+  --gold: #a16207;
+  --gold-bright: #c9a227;
+  --stone: #6b645c;
+  --hairline: #e4dfd3;
+
+  --background: var(--parchment);
+  --foreground: var(--ink);
+  --card: #ffffff;
+  --card-foreground: var(--ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--parchment);
+  --secondary: #f0ece3;
+  --secondary-foreground: var(--ink);
+  --muted: #f0ece3;
+  --muted-foreground: var(--stone);
+  --accent: var(--gold);
+  --accent-foreground: #ffffff;
+  --destructive: #b3261e;
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --ring: var(--gold);
+  --chart-1: var(--gold);
+  --chart-2: var(--stone);
+  --chart-3: var(--ink);
+  --chart-4: var(--gold-bright);
+  --chart-5: var(--hairline);
+  --radius: 0.25rem;
+  --sidebar: var(--parchment);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: var(--parchment);
+  --sidebar-accent: var(--gold);
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: var(--hairline);
+  --sidebar-ring: var(--gold);
 }
 
-html {
-  scroll-behavior: smooth;
+.dark {
+  --background: var(--ink);
+  --foreground: var(--parchment);
+  --card: #26221f;
+  --card-foreground: var(--parchment);
+  --popover: #26221f;
+  --popover-foreground: var(--parchment);
+  --primary: var(--parchment);
+  --primary-foreground: var(--ink);
+  --secondary: #2c2824;
+  --secondary-foreground: var(--parchment);
+  --muted: #2c2824;
+  --muted-foreground: #b4ab9d;
+  --accent: var(--gold-bright);
+  --accent-foreground: var(--ink);
+  --destructive: #e2867d;
+  --border: rgb(250 248 244 / 14%);
+  --input: rgb(250 248 244 / 14%);
+  --ring: var(--gold-bright);
+  --chart-1: var(--gold-bright);
+  --chart-2: #b4ab9d;
+  --chart-3: var(--parchment);
+  --chart-4: var(--gold);
+  --chart-5: rgb(250 248 244 / 14%);
+  --sidebar: var(--ink);
+  --sidebar-foreground: var(--parchment);
+  --sidebar-primary: var(--parchment);
+  --sidebar-primary-foreground: var(--ink);
+  --sidebar-accent: var(--gold-bright);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: rgb(250 248 244 / 14%);
+  --sidebar-ring: var(--gold-bright);
 }
 
-body {
-  background: var(--color-cream);
-  color: var(--color-ink);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-
-::selection {
-  background: var(--color-gold);
-  color: var(--color-ink);
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-cream-dark);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-sand);
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-stone-light);
-}
-
-/* Reusable editorial primitives ------------------------------------------ */
-
-.eyebrow {
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-.hairline {
-  height: 1px;
-  background: color-mix(in srgb, var(--color-ink) 12%, transparent);
-}
-
-/* Underline that draws itself on hover — nav links and inline text links */
-.link-underline {
-  position: relative;
-}
-.link-underline::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 100%;
-  height: 1px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.45s var(--ease-luxe);
-}
-.link-underline:hover::after {
-  transform: scaleX(1);
-}
-
-.skeleton {
-  background: linear-gradient(
-    90deg,
-    var(--color-cream-dark) 25%,
-    var(--color-sand) 50%,
-    var(--color-cream-dark) 75%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.6s linear infinite;
-}
-
-/* Reveal-on-scroll: starts hidden, .is-visible added by an IntersectionObserver */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition:
-    opacity 1s var(--ease-luxe),
-    transform 1s var(--ease-luxe);
-}
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
   html {
-    scroll-behavior: auto;
+    @apply font-sans;
   }
-  .reveal {
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif;
+  }
+}
+
+/* Signature motif: a gold index tick before section eyebrows,
+   echoing a watch dial's hour markers. */
+.eyebrow {
+  @apply inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-gold;
+}
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 14px;
+  background: var(--gold);
+}
+
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
     opacity: 1;
-    transform: none;
-    transition: none;
+    transform: translateY(0);
   }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+}
+.animate-hero-fade {
+  animation: hero-fade 400ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-fade {
+    animation: none;
   }
 }

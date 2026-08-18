@@ -1,245 +1,179 @@
 "use client";
 
-import * as React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Menu, Search, ShoppingBag, User, X, Heart } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState, useSyncExternalStore, type FormEvent } from "react";
+import { Menu, X, Search, Heart, User, ShoppingBag } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { mainNav, site } from "@/lib/site";
-import { cartCount, useCart } from "@/lib/store/cart";
-import { useWishlist } from "@/lib/store/wishlist";
+import { useCartCount } from "@/lib/store/cart";
+import { useWishlistCount } from "@/lib/store/wishlist";
+import { WatchMark } from "@/components/home/watch-mark";
+
+const emptySubscribe = () => () => {};
+
+/** True only once the component has hydrated on the client — avoids an SSR/client mismatch for persisted store counts. */
+function useIsMounted() {
+  return useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
+}
+
+const NAV_LINKS = [
+  { href: "/collections", label: "Collections" },
+  { href: "/watches", label: "Watches" },
+  { href: "/craftsmanship", label: "Craftsmanship" },
+  { href: "/journal", label: "Journal" },
+  { href: "/boutiques", label: "Boutiques" },
+];
+
+function IconBadge({ count }: { count: number }) {
+  if (count <= 0) return null;
+  return (
+    <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-gold px-1 font-mono text-[10px] leading-none text-white">
+      {count}
+    </span>
+  );
+}
 
 export function Header() {
-  const pathname = usePathname();
-  const [scrolled, setScrolled] = React.useState(false);
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const router = useRouter();
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const mounted = useIsMounted();
 
-  const lines = useCart((s) => s.lines);
-  const openCart = useCart((s) => s.open);
-  const wishlistSlugs = useWishlist((s) => s.slugs);
+  const cartCount = useCartCount();
+  const wishlistCount = useWishlistCount();
 
-  // Only the homepage has a full-bleed dark hero for the header to sit over.
-  const overlayHero = pathname === "/";
-  const transparent = overlayHero && !scrolled && !mobileOpen;
-
-  React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  React.useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
-
-  React.useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+  useEffect(() => {
+    document.body.style.overflow = menuOpen || searchOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [mobileOpen]);
+  }, [menuOpen, searchOpen]);
 
-  const count = cartCount(lines);
-  // The homepage hero is light (cream), so the header stays ink-toned in
-  // both states — only the background/border settle in on scroll.
-  const iconTone = "text-ink";
+  function handleSearchSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const trimmed = query.trim();
+    if (!trimmed) return;
+    setSearchOpen(false);
+    router.push(`/search?q=${encodeURIComponent(trimmed)}`);
+  }
 
   return (
-    <>
-      <header
-        className={cn(
-          "fixed top-0 right-0 left-0 z-50 border-b transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
-          transparent
-            ? "border-b-transparent bg-transparent"
-            : "border-ink/10 bg-cream/95 backdrop-blur-md",
-        )}
-      >
-        <div className="mx-auto flex h-[var(--header-height)] w-full max-w-[1400px] items-center justify-between px-6 lg:px-12">
-          {/* Left — reference line: wordmark doubles as the first spec in the ledger */}
-          <div className="flex items-center gap-4 lg:gap-5">
-            <button
-              type="button"
-              onClick={() => setMobileOpen(true)}
-              aria-label="Open menu"
-              className={cn("lg:hidden", iconTone)}
-            >
-              <Menu className="h-5 w-5" strokeWidth={1.5} />
-            </button>
-
-            <Link
-              href="/"
-              className={cn(
-                "flex items-center gap-3 transition-colors duration-500 lg:gap-4",
-                iconTone,
-              )}
-            >
-              <span className="font-display text-lg leading-none tracking-[0.14em] whitespace-nowrap lg:text-xl">
-                MERIDIAN
-              </span>
-              <span className="h-4 w-px shrink-0 bg-ink/20" />
-              <span className="hidden text-[0.5625rem] tracking-[0.32em] whitespace-nowrap opacity-60 sm:inline">
-                EST. {site.established} · SAN FRANCISCO
-              </span>
-            </Link>
-          </div>
-
-          {/* Right — nav, then utilities, read like the value columns of the same row */}
-          <div className="flex items-center gap-9 lg:gap-11">
-            <nav className="hidden items-center gap-8 lg:flex">
-              {mainNav.map((item) => {
-                const active =
-                  pathname === item.href ||
-                  pathname.startsWith(`${item.href}/`);
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={cn(
-                      "link-underline eyebrow transition-colors duration-300",
-                      iconTone,
-                      active && "text-gold",
-                    )}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
-            </nav>
-
-            <div className="flex items-center gap-5">
-              <Link
-                href="/search"
-                aria-label="Search"
-                className={cn("transition-colors hover:text-gold", iconTone)}
-              >
-                <Search
-                  className="h-[1.15rem] w-[1.15rem]"
-                  strokeWidth={1.5}
-                />
-              </Link>
-              <Link
-                href="/wishlist"
-                aria-label="Wishlist"
-                className={cn(
-                  "relative hidden transition-colors hover:text-gold sm:block",
-                  iconTone,
-                )}
-              >
-                <Heart
-                  className="h-[1.15rem] w-[1.15rem]"
-                  strokeWidth={1.5}
-                />
-                {wishlistSlugs.length > 0 ? (
-                  <span className="absolute -top-1.5 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-gold px-1 text-[0.5625rem] font-medium text-ink">
-                    {wishlistSlugs.length}
-                  </span>
-                ) : null}
-              </Link>
-              <Link
-                href="/account"
-                aria-label="Account"
-                className={cn(
-                  "hidden transition-colors hover:text-gold sm:block",
-                  iconTone,
-                )}
-              >
-                <User className="h-[1.15rem] w-[1.15rem]" strokeWidth={1.5} />
-              </Link>
-              <button
-                type="button"
-                onClick={openCart}
-                aria-label={`Cart, ${count} item${count === 1 ? "" : "s"}`}
-                className={cn(
-                  "relative cursor-pointer transition-colors hover:text-gold",
-                  iconTone,
-                )}
-              >
-                <ShoppingBag
-                  className="h-[1.15rem] w-[1.15rem]"
-                  strokeWidth={1.5}
-                />
-                {count > 0 ? (
-                  <span className="absolute -top-1.5 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-gold px-1 text-[0.5625rem] font-medium text-ink">
-                    {count}
-                  </span>
-                ) : null}
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Mobile drawer */}
-      <div
-        className={cn(
-          "fixed inset-0 z-60 lg:hidden",
-          mobileOpen ? "pointer-events-auto" : "pointer-events-none",
-        )}
-      >
-        <div
-          onClick={() => setMobileOpen(false)}
-          className={cn(
-            "absolute inset-0 bg-ink/50 transition-opacity duration-500",
-            mobileOpen ? "opacity-100" : "opacity-0",
-          )}
-        />
-        <div
-          className={cn(
-            "absolute top-0 left-0 h-full w-[86%] max-w-sm bg-cream px-8 py-8 transition-transform duration-600 ease-[cubic-bezier(0.16,1,0.3,1)]",
-            mobileOpen ? "translate-x-0" : "-translate-x-full",
-          )}
-        >
-          <div className="flex items-center justify-between">
-            <span className="flex items-center gap-3">
-              <span className="font-display text-lg tracking-[0.14em]">
-                MERIDIAN
-              </span>
-              <span className="h-4 w-px bg-ink/20" />
-              <span className="text-[0.5625rem] tracking-[0.32em] whitespace-nowrap opacity-60">
-                EST. {site.established}
-              </span>
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 w-full border-b border-border bg-background/95 text-foreground backdrop-blur transition-shadow duration-300",
+        scrolled ? "shadow-[0_1px_12px_0_rgba(28,25,23,0.06)]" : "shadow-none"
+      )}
+    >
+      <div className="mx-auto grid h-20 max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-6 px-6 lg:px-10">
+        <div className="flex items-center gap-4">
+          <button
+            type="button"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+            className="cursor-pointer lg:hidden"
+          >
+            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+          <Link href="/" className="flex cursor-pointer items-center gap-2.5">
+            <WatchMark className="h-6 w-6 shrink-0 text-gold" />
+            <span className="font-serif text-lg tracking-[0.18em] uppercase sm:text-xl">
+              Maison Temps
             </span>
-            <button
-              type="button"
-              onClick={() => setMobileOpen(false)}
-              aria-label="Close menu"
-              className="cursor-pointer text-ink hover:text-gold"
+          </Link>
+        </div>
+
+        <nav className="hidden items-center gap-7 justify-self-center lg:flex">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-xs font-medium uppercase tracking-[0.14em] opacity-90 transition-opacity hover:opacity-100"
             >
-              <X className="h-5 w-5" strokeWidth={1.5} />
-            </button>
-          </div>
+              {link.label}
+            </Link>
+          ))}
+        </nav>
 
-          <nav className="mt-12 flex flex-col">
-            {mainNav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="border-b border-ink/10 py-5 font-display text-2xl text-ink transition-colors hover:text-gold"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          <nav className="mt-10 flex flex-col gap-4">
-            {[
-              { label: "My Account", href: "/account" },
-              { label: "Wishlist", href: "/wishlist" },
-              { label: "Services & Care", href: "/services" },
-              { label: "Contact", href: "/contact" },
-            ].map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="eyebrow text-stone transition-colors hover:text-gold"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+        <div className="flex items-center justify-end gap-5">
+          <button
+            type="button"
+            aria-label={searchOpen ? "Close search" : "Search"}
+            aria-expanded={searchOpen}
+            onClick={() => {
+              setSearchOpen((v) => !v);
+              setMenuOpen(false);
+            }}
+            className="cursor-pointer"
+          >
+            {searchOpen ? <X className="h-[18px] w-[18px]" /> : <Search className="h-[18px] w-[18px]" />}
+          </button>
+          <Link href="/wishlist" aria-label="Wishlist" className="relative cursor-pointer">
+            <Heart className="h-[18px] w-[18px]" />
+            {mounted && <IconBadge count={wishlistCount} />}
+          </Link>
+          <Link href="/account" aria-label="Account" className="cursor-pointer">
+            <User className="h-[18px] w-[18px]" />
+          </Link>
+          <Link href="/cart" aria-label="Cart" className="relative cursor-pointer">
+            <ShoppingBag className="h-[18px] w-[18px]" />
+            {mounted && <IconBadge count={cartCount} />}
+          </Link>
         </div>
       </div>
-    </>
+
+      {menuOpen && (
+        <nav className="flex flex-col gap-1 border-t border-border bg-background px-6 py-6 text-foreground lg:hidden">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="py-3 text-sm font-medium uppercase tracking-[0.14em]"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+      )}
+
+      {searchOpen && (
+        <div className="border-t border-border bg-background px-6 py-6 text-foreground lg:px-10">
+          <form
+            onSubmit={handleSearchSubmit}
+            className="mx-auto flex max-w-2xl items-center gap-4"
+          >
+            <Search className="h-5 w-5 shrink-0 text-stone" />
+            <input
+              type="search"
+              autoFocus
+              placeholder="Search watches, collections…"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              className="w-full border-b border-hairline bg-transparent py-2 font-serif text-lg placeholder:text-stone/60 focus:border-gold focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="shrink-0 cursor-pointer text-xs font-medium uppercase tracking-[0.14em] text-gold"
+            >
+              Search
+            </button>
+          </form>
+        </div>
+      )}
+    </header>
   );
 }
