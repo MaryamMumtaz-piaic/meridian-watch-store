@@ -129,7 +129,7 @@ export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
           <div className="mt-6 flex flex-nowrap items-center gap-2 sm:gap-4">
             <Link
               href="/watches"
-              className="group inline-flex min-w-0 flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-full bg-ink px-3 py-3 text-[10px] font-medium uppercase tracking-normal text-parchment shadow-[0_8px_20px_-8px_rgba(28,25,23,0.5)] outline-none transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink/90 hover:shadow-[0_14px_28px_-10px_rgba(28,25,23,0.55)] focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-background active:translate-y-0 sm:flex-initial sm:gap-2 sm:px-8 sm:py-3.5 sm:text-xs sm:tracking-[0.14em]"
+              className="group inline-flex min-w-0 flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-full bg-ink px-3 py-3 text-[10px] font-medium uppercase tracking-normal text-parchment shadow-[0_8px_20px_-8px_rgba(28,25,23,0.5)] outline-none transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink/90 hover:text-gold-bright hover:shadow-[0_14px_28px_-10px_rgba(28,25,23,0.55)] focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-background active:translate-y-0 sm:flex-initial sm:gap-2 sm:px-8 sm:py-3.5 sm:text-xs sm:tracking-[0.14em]"
             >
               <span className="truncate">Shop the Collection</span>
               <ArrowRight className="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />

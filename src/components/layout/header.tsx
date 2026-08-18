@@ -84,13 +84,13 @@ export function Header() {
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}
-            className="cursor-pointer lg:hidden"
+            className="cursor-pointer text-foreground transition-colors duration-300 hover:text-gold lg:hidden"
           >
             {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
-          <Link href="/" className="flex cursor-pointer items-center gap-2.5">
-            <WatchMark className="h-6 w-6 shrink-0 text-gold" />
-            <span className="font-serif text-lg tracking-[0.18em] uppercase sm:text-xl">
+          <Link href="/" className="group flex cursor-pointer items-center gap-2.5">
+            <WatchMark className="h-6 w-6 shrink-0 text-gold transition-colors duration-300 group-hover:text-gold-bright" />
+            <span className="font-serif text-lg tracking-[0.18em] uppercase transition-colors duration-300 group-hover:text-gold sm:text-xl">
               Maison Temps
             </span>
           </Link>
@@ -101,9 +101,10 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-xs font-medium uppercase tracking-[0.14em] opacity-90 transition-opacity hover:opacity-100"
+              className="group relative py-1 text-xs font-medium uppercase tracking-[0.14em] text-foreground/80 transition-colors duration-300 hover:text-gold"
             >
               {link.label}
+              <span className="pointer-events-none absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-gold transition-transform duration-300 ease-out group-hover:scale-x-100" />
             </Link>
           ))}
         </nav>
@@ -117,18 +118,30 @@ export function Header() {
               setSearchOpen((v) => !v);
               setMenuOpen(false);
             }}
-            className="cursor-pointer"
+            className="cursor-pointer text-foreground transition-all duration-300 hover:scale-110 hover:text-gold"
           >
             {searchOpen ? <X className="h-[18px] w-[18px]" /> : <Search className="h-[18px] w-[18px]" />}
           </button>
-          <Link href="/wishlist" aria-label="Wishlist" className="relative cursor-pointer">
+          <Link
+            href="/wishlist"
+            aria-label="Wishlist"
+            className="relative cursor-pointer text-foreground transition-all duration-300 hover:scale-110 hover:text-gold"
+          >
             <Heart className="h-[18px] w-[18px]" />
             {mounted && <IconBadge count={wishlistCount} />}
           </Link>
-          <Link href="/account" aria-label="Account" className="cursor-pointer">
+          <Link
+            href="/account"
+            aria-label="Account"
+            className="cursor-pointer text-foreground transition-all duration-300 hover:scale-110 hover:text-gold"
+          >
             <User className="h-[18px] w-[18px]" />
           </Link>
-          <Link href="/cart" aria-label="Cart" className="relative cursor-pointer">
+          <Link
+            href="/cart"
+            aria-label="Cart"
+            className="relative cursor-pointer text-foreground transition-all duration-300 hover:scale-110 hover:text-gold"
+          >
             <ShoppingBag className="h-[18px] w-[18px]" />
             {mounted && <IconBadge count={cartCount} />}
           </Link>
@@ -142,7 +155,7 @@ export function Header() {
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="py-3 text-sm font-medium uppercase tracking-[0.14em]"
+              className="py-3 text-sm font-medium uppercase tracking-[0.14em] text-foreground transition-colors duration-300 hover:text-gold"
             >
               {link.label}
             </Link>
@@ -167,7 +180,7 @@ export function Header() {
             />
             <button
               type="submit"
-              className="shrink-0 cursor-pointer text-xs font-medium uppercase tracking-[0.14em] text-gold"
+              className="shrink-0 cursor-pointer text-xs font-medium uppercase tracking-[0.14em] text-gold transition-colors duration-300 hover:text-gold-bright"
             >
               Search
             </button>
