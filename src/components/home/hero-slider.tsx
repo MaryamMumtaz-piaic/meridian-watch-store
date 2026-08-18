@@ -30,34 +30,39 @@ const FALLBACK_SLIDE: HeroSlide = {
 const SLIDE_COPY = [
   {
     eyebrow: "Reference No. 001 — Since 2026",
-    headline: "Time, made to be kept.",
+    headlineLead: "Time, made to be",
+    headlineAccent: "kept.",
     subcopy:
       "Maison Temps crafts fine mechanical watches for people who measure things in decades, not seasons.",
     badge: "Sale",
   },
   {
     eyebrow: "New Arrival",
-    headline: "Engineered for the wrist you actually wear.",
+    headlineLead: "Engineered for the wrist",
+    headlineAccent: "you actually wear.",
     subcopy:
       "Titanium cases, sapphire crystals, and movements built to run quietly for a lifetime.",
     badge: null,
   },
   {
     eyebrow: "The Atelier Standard",
-    headline: "Precision that outlives trend cycles.",
+    headlineLead: "Precision that outlives",
+    headlineAccent: "trend cycles.",
     subcopy:
       "Every case is finished by hand and regulated to chronometer tolerances before it leaves the atelier.",
     badge: null,
   },
   {
     eyebrow: "Swiss Movement, Reimagined",
-    headline: "Every second, considered.",
+    headlineLead: "Every second,",
+    headlineAccent: "considered.",
     subcopy: "From the escapement to the clasp, nothing on a Maison Temps watch is left to chance.",
     badge: null,
   },
   {
     eyebrow: "Heirloom in the Making",
-    headline: "A watch you hand down, not down-grade.",
+    headlineLead: "A watch you hand down,",
+    headlineAccent: "not down-grade.",
     subcopy: "Built to be serviced, not replaced — a companion piece for the next fifty years.",
     badge: null,
   },
@@ -107,16 +112,17 @@ export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
       <p className="sr-only" aria-live="polite">
         {hasProduct
           ? `Now showing ${current.name}, ${current.collectionName}, ${formatPriceCents(current.priceCents)}`
-          : copy.headline}
+          : `${copy.headlineLead} ${copy.headlineAccent}`}
       </p>
       <div className="mx-auto grid w-full max-w-7xl gap-8 px-6 py-6 lg:grid-cols-12 lg:items-center lg:gap-10 lg:px-10 lg:py-0">
         {/* Text */}
         <div key={`copy-${active}`} className="animate-hero-fade flex flex-col lg:col-span-5">
           <span className="eyebrow text-[10px] sm:text-xs">{copy.eyebrow}</span>
-          <h1 className="mt-4 max-w-xl font-serif text-3xl leading-[1.08] text-foreground sm:text-4xl lg:text-6xl">
-            {copy.headline}
+          <h1 className="mt-4 max-w-xl font-serif text-3xl leading-[1.08] tracking-tight text-foreground sm:text-4xl lg:text-6xl">
+            {copy.headlineLead}{" "}
+            <em className="font-serif italic text-gold-bright">{copy.headlineAccent}</em>
           </h1>
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-stone sm:text-base">
+          <p className="mt-5 max-w-md border-l-2 border-gold/40 py-0.5 pl-4 text-sm leading-relaxed text-stone sm:text-base">
             {copy.subcopy}
           </p>
 
