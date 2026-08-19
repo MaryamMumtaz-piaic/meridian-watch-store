@@ -159,7 +159,7 @@ export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
               aria-hidden
               className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-gold/20 via-gold-bright/10 to-transparent blur-2xl transition-opacity duration-500 group-hover:opacity-80 sm:-inset-10"
             />
-            <div className="relative h-[30vh] w-full overflow-hidden rounded-[28px] bg-secondary shadow-[0_0_0_1px_rgba(201,162,39,0.16),0_32px_70px_-28px_rgba(28,25,23,0.35)] transition-shadow duration-500 group-hover:shadow-[0_0_0_1px_rgba(201,162,39,0.3),0_40px_80px_-24px_rgba(28,25,23,0.4)] sm:h-[40vh] sm:rounded-[36px] lg:h-[60vh]">
+            <div className="relative aspect-video w-full overflow-hidden rounded-[28px] bg-[#1c1917] shadow-[0_0_0_1px_rgba(201,162,39,0.16),0_32px_70px_-28px_rgba(28,25,23,0.35)] transition-shadow duration-500 group-hover:shadow-[0_0_0_1px_rgba(201,162,39,0.3),0_40px_80px_-24px_rgba(28,25,23,0.4)] sm:rounded-[36px]">
               {items.map((slide, index) => (
                 <Image
                   key={slide.id}
@@ -168,9 +168,7 @@ export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
                   fill
                   priority={index === 0}
                   sizes="(min-width: 1024px) 55vw, 100vw"
-                  className={`object-cover transition-all duration-[1800ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                    index === active ? "scale-100" : "scale-[1.12]"
-                  }`}
+                  className="object-contain transition-opacity duration-[1800ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
                   style={{ opacity: index === active ? 1 : 0 }}
                 />
               ))}

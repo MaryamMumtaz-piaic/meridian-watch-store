@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { HeroSlider, type HeroSlide } from "@/components/home/hero-slider";
 
 /** Curated hero photography — cycles alongside the editorial copy, independent of each product's catalog images. */
-const HERO_IMAGES = ["/hero/1.jpeg", "/hero/2.jpeg", "/hero/3.jpeg", "/hero/4.jpeg", "/hero/5.jpeg"];
+const HERO_IMAGES = ["/hero/1.jpeg", "/hero/2.png", "/hero/3.png", "/hero/4.png", "/hero/5.png"];
 
 export async function Hero() {
   const products = await prisma.product.findMany({
