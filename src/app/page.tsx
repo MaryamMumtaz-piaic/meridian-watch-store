@@ -1,6 +1,7 @@
 import { Hero } from "@/components/home/hero";
 import { FeaturedCollections } from "@/components/home/featured-collections";
 import { NewArrivals } from "@/components/home/new-arrivals";
+import { BannerSlider } from "@/components/home/banner-slider";
 import { CraftsmanshipTeaser } from "@/components/home/craftsmanship-teaser";
 import { JournalTeaser } from "@/components/home/journal-teaser";
 import { BoutiquesTeaser } from "@/components/home/boutiques-teaser";
@@ -12,6 +13,7 @@ export default function Home() {
       <Hero />
       <FeaturedCollections />
       <NewArrivals />
+      <BannerSlider />
       <CraftsmanshipTeaser />
       <JournalTeaser />
       <BoutiquesTeaser />

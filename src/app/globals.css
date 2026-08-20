@@ -183,6 +183,15 @@
   }
 }
 
+/* Banner slider — progress bar fills left-to-right for each slide duration */
+@keyframes banner-progress {
+  from { transform: scaleX(0); width: 100%; }
+  to   { transform: scaleX(1); width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [style*="banner-progress"] { animation: none !important; }
+}
+
 /* Collections — infinite left-to-right marquee */
 /* 4 copies in track → animate exactly 1/4 (one set) for gapless infinite loop */
 @keyframes marquee-ltr {
