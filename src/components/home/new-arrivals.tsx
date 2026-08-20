@@ -3,6 +3,7 @@ import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 import { formatPriceCents } from "@/lib/format";
 import { AddToCartButton } from "@/components/home/add-to-cart-button";
+import { WishlistButton } from "@/components/home/wishlist-button";
 
 export async function NewArrivals() {
   const products = await prisma.product.findMany({
@@ -34,7 +35,7 @@ export async function NewArrivals() {
           const images = JSON.parse(product.images) as string[];
           return (
             <div key={product.id} className="group">
-              <div className="relative aspect-[4/5] overflow-hidden border border-hairline bg-secondary transition-colors group-hover:border-gold">
+              <div className="relative aspect-square w-full max-w-[280px] overflow-hidden border border-hairline bg-secondary transition-colors group-hover:border-gold">
                 <Link href={`/watches/${product.slug}`} className="relative block h-full w-full cursor-pointer">
                   <Image
                     src={images[0]}
@@ -44,6 +45,15 @@ export async function NewArrivals() {
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </Link>
+                <WishlistButton
+                  product={{
+                    productId: product.id,
+                    slug: product.slug,
+                    name: product.name,
+                    priceCents: product.priceCents,
+                    image: images[0],
+                  }}
+                />
                 <AddToCartButton
                   product={{
                     productId: product.id,
@@ -54,18 +64,16 @@ export async function NewArrivals() {
                   }}
                 />
               </div>
-              <Link href={`/watches/${product.slug}`} className="cursor-pointer">
-                <div className="mt-4 flex items-start justify-between gap-3">
-                  <div>
-                    <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-stone">
-                      {product.collection.name} · {product.caseSize}
-                    </p>
-                    <h3 className="mt-1 font-serif text-lg text-foreground">{product.name}</h3>
-                  </div>
-                  <p className="shrink-0 font-mono text-sm text-foreground">
-                    {formatPriceCents(product.priceCents)}
-                  </p>
-                </div>
+              <Link href={`/watches/${product.slug}`} className="mt-4 block max-w-[280px] cursor-pointer">
+                <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-stone">
+                  {product.collection.name} · {product.caseSize}
+                </p>
+                <h3 className="mt-1.5 font-serif text-xl font-bold leading-tight text-foreground transition-colors group-hover:text-gold">
+                  {product.name}
+                </h3>
+                <p className="mt-1.5 font-mono text-base font-semibold text-foreground">
+                  {formatPriceCents(product.priceCents)}
+                </p>
               </Link>
             </div>
           );

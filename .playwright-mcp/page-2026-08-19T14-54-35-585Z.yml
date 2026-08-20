@@ -1,0 +1,456 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Maison Temps" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=e11]:
+        - link "Collections" [ref=e12] [cursor=pointer]:
+          - /url: /collections
+        - link "Watches" [ref=e13] [cursor=pointer]:
+          - /url: /watches
+        - link "Craftsmanship" [ref=e14] [cursor=pointer]:
+          - /url: /craftsmanship
+        - link "Journal" [ref=e15] [cursor=pointer]:
+          - /url: /journal
+        - link "Boutiques" [ref=e16] [cursor=pointer]:
+          - /url: /boutiques
+      - generic [ref=e17]:
+        - button "Search" [ref=e18] [cursor=pointer]
+        - link "Wishlist" [ref=e22] [cursor=pointer]:
+          - /url: /wishlist
+        - link "Account" [ref=e25] [cursor=pointer]:
+          - /url: /account
+        - link "Cart" [ref=e29] [cursor=pointer]:
+          - /url: /cart
+  - main [ref=e33]:
+    - generic [ref=e34]:
+      - region "Featured watches" [ref=e35]:
+        - paragraph [ref=e36]: Now showing Summit Titanium 49, Summit, $7,900
+        - generic [ref=e37]:
+          - generic [ref=e38]:
+            - generic [ref=e39]: Reference No. 001 — Since 2026
+            - heading [level=1] [ref=e40]:
+              - text: Time, made to be
+              - emphasis [ref=e41]: kept.
+            - paragraph [ref=e42]: Maison Temps crafts fine mechanical watches for people who measure things in decades, not seasons.
+            - generic [ref=e43]:
+              - link "Shop the Collection" [ref=e44] [cursor=pointer]:
+                - /url: /watches
+              - link "Discover the Atelier" [ref=e48] [cursor=pointer]:
+                - /url: /craftsmanship
+            - generic [ref=e50]:
+              - generic [ref=e51]: 5-Year Warranty
+              - generic [ref=e56]: Insured Shipping
+              - generic [ref=e63]: Lifetime Authentication
+          - generic [ref=e71]:
+            - img "Summit Titanium 49" [ref=e72]
+            - img "Studio Moonphase" [ref=e73]
+            - img "Studio Round 42" [ref=e74]
+            - img "Pulse 45 Sport" [ref=e75]
+            - img "Pulse 41 Aluminum" [ref=e76]
+            - generic [ref=e77]: Sale
+            - generic [ref=e78]:
+              - generic [ref=e79]:
+                - paragraph [ref=e80]: Summit · 49mm
+                - link "Summit Titanium 49" [ref=e81] [cursor=pointer]:
+                  - /url: /watches/summit-titanium-49
+              - paragraph [ref=e82]: $7,900
+      - generic [ref=e83]:
+        - generic [ref=e85]:
+          - generic [ref=e86]:
+            - generic [ref=e87]: The Collections
+            - heading [level=2] [ref=e88]:
+              - text: Four families.
+              - emphasis [ref=e89]: One standard.
+          - link "View All" [ref=e90] [cursor=pointer]:
+            - /url: /collections
+        - generic [ref=e98]:
+          - generic [ref=e99]:
+            - generic [ref=e100]:
+              - link [ref=e101] [cursor=pointer]:
+                - /url: /watches/aero-slim-40
+                - img "Aero Slim 40" [ref=e102]
+              - button "Add Aero Slim 40 to wishlist" [ref=e103] [cursor=pointer]
+              - button "Add Aero Slim 40 to cart" [ref=e106] [cursor=pointer]: Add to Cart
+            - link [ref=e110] [cursor=pointer]:
+              - /url: /watches/aero-slim-40
+              - paragraph [ref=e111]: Aero · 40mm
+              - heading "Aero Slim 40" [level=3] [ref=e112]
+              - paragraph [ref=e113]: $4,200
+          - generic [ref=e114]:
+            - generic [ref=e115]:
+              - link [ref=e116] [cursor=pointer]:
+                - /url: /watches/pulse-41-aluminum
+                - img "Pulse 41 Aluminum" [ref=e117]
+              - button "Add Pulse 41 Aluminum to wishlist" [ref=e118] [cursor=pointer]
+              - button "Add Pulse 41 Aluminum to cart" [ref=e121] [cursor=pointer]: Add to Cart
+            - link [ref=e125] [cursor=pointer]:
+              - /url: /watches/pulse-41-aluminum
+              - paragraph [ref=e126]: Pulse · 41mm
+              - heading "Pulse 41 Aluminum" [level=3] [ref=e127]
+              - paragraph [ref=e128]: $3,800
+          - generic [ref=e129]:
+            - generic [ref=e130]:
+              - link [ref=e131] [cursor=pointer]:
+                - /url: /watches/studio-round-42
+                - img "Studio Round 42" [ref=e132]
+              - button "Add Studio Round 42 to wishlist" [ref=e133] [cursor=pointer]
+              - button "Add Studio Round 42 to cart" [ref=e136] [cursor=pointer]: Add to Cart
+            - link [ref=e140] [cursor=pointer]:
+              - /url: /watches/studio-round-42
+              - paragraph [ref=e141]: Studio · 42mm
+              - heading "Studio Round 42" [level=3] [ref=e142]
+              - paragraph [ref=e143]: $5,600
+          - generic [ref=e144]:
+            - generic [ref=e145]:
+              - link [ref=e146] [cursor=pointer]:
+                - /url: /watches/summit-titanium-49
+                - img "Summit Titanium 49" [ref=e147]
+              - button "Add Summit Titanium 49 to wishlist" [ref=e148] [cursor=pointer]
+              - button "Add Summit Titanium 49 to cart" [ref=e151] [cursor=pointer]: Add to Cart
+            - link [ref=e155] [cursor=pointer]:
+              - /url: /watches/summit-titanium-49
+              - paragraph [ref=e156]: Summit · 49mm
+              - heading "Summit Titanium 49" [level=3] [ref=e157]
+              - paragraph [ref=e158]: $7,900
+          - generic [ref=e159]:
+            - generic [ref=e160]:
+              - link [ref=e161] [cursor=pointer]:
+                - /url: /watches/aero-slim-40
+                - img "Aero Slim 40" [ref=e162]
+              - button "Add Aero Slim 40 to wishlist" [ref=e163] [cursor=pointer]
+              - button "Add Aero Slim 40 to cart" [ref=e166] [cursor=pointer]: Add to Cart
+            - link [ref=e170] [cursor=pointer]:
+              - /url: /watches/aero-slim-40
+              - paragraph [ref=e171]: Aero · 40mm
+              - heading "Aero Slim 40" [level=3] [ref=e172]
+              - paragraph [ref=e173]: $4,200
+          - generic [ref=e174]:
+            - generic [ref=e175]:
+              - link [ref=e176] [cursor=pointer]:
+                - /url: /watches/pulse-41-aluminum
+                - img "Pulse 41 Aluminum" [ref=e177]
+              - button "Add Pulse 41 Aluminum to wishlist" [ref=e178] [cursor=pointer]
+              - button "Add Pulse 41 Aluminum to cart" [ref=e181] [cursor=pointer]: Add to Cart
+            - link [ref=e185] [cursor=pointer]:
+              - /url: /watches/pulse-41-aluminum
+              - paragraph [ref=e186]: Pulse · 41mm
+              - heading "Pulse 41 Aluminum" [level=3] [ref=e187]
+              - paragraph [ref=e188]: $3,800
+          - generic [ref=e189]:
+            - generic [ref=e190]:
+              - link [ref=e191] [cursor=pointer]:
+                - /url: /watches/studio-round-42
+                - img "Studio Round 42" [ref=e192]
+              - button "Add Studio Round 42 to wishlist" [ref=e193] [cursor=pointer]
+              - button "Add Studio Round 42 to cart" [ref=e196] [cursor=pointer]: Add to Cart
+            - link [ref=e200] [cursor=pointer]:
+              - /url: /watches/studio-round-42
+              - paragraph [ref=e201]: Studio · 42mm
+              - heading "Studio Round 42" [level=3] [ref=e202]
+              - paragraph [ref=e203]: $5,600
+          - generic [ref=e204]:
+            - generic [ref=e205]:
+              - link [ref=e206] [cursor=pointer]:
+                - /url: /watches/summit-titanium-49
+                - img "Summit Titanium 49" [ref=e207]
+              - button "Add Summit Titanium 49 to wishlist" [ref=e208] [cursor=pointer]
+              - button "Add Summit Titanium 49 to cart" [ref=e211] [cursor=pointer]: Add to Cart
+            - link [ref=e215] [cursor=pointer]:
+              - /url: /watches/summit-titanium-49
+              - paragraph [ref=e216]: Summit · 49mm
+              - heading "Summit Titanium 49" [level=3] [ref=e217]
+              - paragraph [ref=e218]: $7,900
+          - generic [ref=e219]:
+            - generic [ref=e220]:
+              - link [ref=e221] [cursor=pointer]:
+                - /url: /watches/aero-slim-40
+                - img "Aero Slim 40" [ref=e222]
+              - button "Add Aero Slim 40 to wishlist" [ref=e223] [cursor=pointer]
+              - button "Add Aero Slim 40 to cart" [ref=e226] [cursor=pointer]: Add to Cart
+            - link [ref=e230] [cursor=pointer]:
+              - /url: /watches/aero-slim-40
+              - paragraph [ref=e231]: Aero · 40mm
+              - heading "Aero Slim 40" [level=3] [ref=e232]
+              - paragraph [ref=e233]: $4,200
+          - generic [ref=e234]:
+            - generic [ref=e235]:
+              - link [ref=e236] [cursor=pointer]:
+                - /url: /watches/pulse-41-aluminum
+                - img "Pulse 41 Aluminum" [ref=e237]
+              - button "Add Pulse 41 Aluminum to wishlist" [ref=e238] [cursor=pointer]
+              - button "Add Pulse 41 Aluminum to cart" [ref=e241] [cursor=pointer]: Add to Cart
+            - link [ref=e245] [cursor=pointer]:
+              - /url: /watches/pulse-41-aluminum
+              - paragraph [ref=e246]: Pulse · 41mm
+              - heading "Pulse 41 Aluminum" [level=3] [ref=e247]
+              - paragraph [ref=e248]: $3,800
+          - generic [ref=e249]:
+            - generic [ref=e250]:
+              - link [ref=e251] [cursor=pointer]:
+                - /url: /watches/studio-round-42
+                - img "Studio Round 42" [ref=e252]
+              - button "Add Studio Round 42 to wishlist" [ref=e253] [cursor=pointer]
+              - button "Add Studio Round 42 to cart" [ref=e256] [cursor=pointer]: Add to Cart
+            - link [ref=e260] [cursor=pointer]:
+              - /url: /watches/studio-round-42
+              - paragraph [ref=e261]: Studio · 42mm
+              - heading "Studio Round 42" [level=3] [ref=e262]
+              - paragraph [ref=e263]: $5,600
+          - generic [ref=e264]:
+            - generic [ref=e265]:
+              - link [ref=e266] [cursor=pointer]:
+                - /url: /watches/summit-titanium-49
+                - img "Summit Titanium 49" [ref=e267]
+              - button "Add Summit Titanium 49 to wishlist" [ref=e268] [cursor=pointer]
+              - button "Add Summit Titanium 49 to cart" [ref=e271] [cursor=pointer]: Add to Cart
+            - link [ref=e275] [cursor=pointer]:
+              - /url: /watches/summit-titanium-49
+              - paragraph [ref=e276]: Summit · 49mm
+              - heading "Summit Titanium 49" [level=3] [ref=e277]
+              - paragraph [ref=e278]: $7,900
+          - generic [ref=e279]:
+            - generic [ref=e280]:
+              - link [ref=e281] [cursor=pointer]:
+                - /url: /watches/aero-slim-40
+                - img "Aero Slim 40" [ref=e282]
+              - button "Add Aero Slim 40 to wishlist" [ref=e283] [cursor=pointer]
+              - button "Add Aero Slim 40 to cart" [ref=e286] [cursor=pointer]: Add to Cart
+            - link [ref=e290] [cursor=pointer]:
+              - /url: /watches/aero-slim-40
+              - paragraph [ref=e291]: Aero · 40mm
+              - heading "Aero Slim 40" [level=3] [ref=e292]
+              - paragraph [ref=e293]: $4,200
+          - generic [ref=e294]:
+            - generic [ref=e295]:
+              - link [ref=e296] [cursor=pointer]:
+                - /url: /watches/pulse-41-aluminum
+                - img "Pulse 41 Aluminum" [ref=e297]
+              - button "Add Pulse 41 Aluminum to wishlist" [ref=e298] [cursor=pointer]
+              - button "Add Pulse 41 Aluminum to cart" [ref=e301] [cursor=pointer]: Add to Cart
+            - link [ref=e305] [cursor=pointer]:
+              - /url: /watches/pulse-41-aluminum
+              - paragraph [ref=e306]: Pulse · 41mm
+              - heading "Pulse 41 Aluminum" [level=3] [ref=e307]
+              - paragraph [ref=e308]: $3,800
+          - generic [ref=e309]:
+            - generic [ref=e310]:
+              - link [ref=e311] [cursor=pointer]:
+                - /url: /watches/studio-round-42
+                - img "Studio Round 42" [ref=e312]
+              - button "Add Studio Round 42 to wishlist" [ref=e313] [cursor=pointer]
+              - button "Add Studio Round 42 to cart" [ref=e316] [cursor=pointer]: Add to Cart
+            - link [ref=e320] [cursor=pointer]:
+              - /url: /watches/studio-round-42
+              - paragraph [ref=e321]: Studio · 42mm
+              - heading "Studio Round 42" [level=3] [ref=e322]
+              - paragraph [ref=e323]: $5,600
+          - generic [ref=e324]:
+            - generic [ref=e325]:
+              - link [ref=e326] [cursor=pointer]:
+                - /url: /watches/summit-titanium-49
+                - img "Summit Titanium 49" [ref=e327]
+              - button "Add Summit Titanium 49 to wishlist" [ref=e328] [cursor=pointer]
+              - button "Add Summit Titanium 49 to cart" [ref=e331] [cursor=pointer]: Add to Cart
+            - link [ref=e335] [cursor=pointer]:
+              - /url: /watches/summit-titanium-49
+              - paragraph [ref=e336]: Summit · 49mm
+              - heading "Summit Titanium 49" [level=3] [ref=e337]
+              - paragraph [ref=e338]: $7,900
+      - generic [ref=e339]:
+        - generic [ref=e340]:
+          - generic [ref=e341]:
+            - generic [ref=e342]: New Arrivals
+            - heading "Just added to the case." [level=2] [ref=e343]
+          - link "Shop All Watches" [ref=e344] [cursor=pointer]:
+            - /url: /watches
+        - generic [ref=e345]:
+          - generic [ref=e346]:
+            - generic [ref=e347]:
+              - link [ref=e348] [cursor=pointer]:
+                - /url: /watches/summit-titanium-49
+                - img "Summit Titanium 49" [ref=e349]
+              - button "Add Summit Titanium 49 to wishlist" [ref=e350] [cursor=pointer]
+              - button "Add Summit Titanium 49 to cart" [ref=e353] [cursor=pointer]: Add to Cart
+            - link [ref=e357] [cursor=pointer]:
+              - /url: /watches/summit-titanium-49
+              - paragraph [ref=e358]: Summit · 49mm
+              - heading "Summit Titanium 49" [level=3] [ref=e359]
+              - paragraph [ref=e360]: $7,900
+          - generic [ref=e361]:
+            - generic [ref=e362]:
+              - link [ref=e363] [cursor=pointer]:
+                - /url: /watches/studio-moonphase
+                - img "Studio Moonphase" [ref=e364]
+              - button "Add Studio Moonphase to wishlist" [ref=e365] [cursor=pointer]
+              - button "Add Studio Moonphase to cart" [ref=e368] [cursor=pointer]: Add to Cart
+            - link [ref=e372] [cursor=pointer]:
+              - /url: /watches/studio-moonphase
+              - paragraph [ref=e373]: Studio · 40mm
+              - heading "Studio Moonphase" [level=3] [ref=e374]
+              - paragraph [ref=e375]: $8,200
+          - generic [ref=e376]:
+            - generic [ref=e377]:
+              - link [ref=e378] [cursor=pointer]:
+                - /url: /watches/studio-round-42
+                - img "Studio Round 42" [ref=e379]
+              - button "Add Studio Round 42 to wishlist" [ref=e380] [cursor=pointer]
+              - button "Add Studio Round 42 to cart" [ref=e383] [cursor=pointer]: Add to Cart
+            - link [ref=e387] [cursor=pointer]:
+              - /url: /watches/studio-round-42
+              - paragraph [ref=e388]: Studio · 42mm
+              - heading "Studio Round 42" [level=3] [ref=e389]
+              - paragraph [ref=e390]: $5,600
+          - generic [ref=e391]:
+            - generic [ref=e392]:
+              - link [ref=e393] [cursor=pointer]:
+                - /url: /watches/pulse-45-sport
+                - img "Pulse 45 Sport" [ref=e394]
+              - button "Add Pulse 45 Sport to wishlist" [ref=e395] [cursor=pointer]
+              - button "Add Pulse 45 Sport to cart" [ref=e398] [cursor=pointer]: Add to Cart
+            - link [ref=e402] [cursor=pointer]:
+              - /url: /watches/pulse-45-sport
+              - paragraph [ref=e403]: Pulse · 45mm
+              - heading "Pulse 45 Sport" [level=3] [ref=e404]
+              - paragraph [ref=e405]: $4,900
+      - generic [ref=e413]:
+        - generic [ref=e414]: Savoir-Faire
+        - heading "Every movement, hand-finished." [level=2] [ref=e415]
+        - paragraph [ref=e416]: Each caliber passes through the same bench for three days — beveled by hand, regulated in five positions, and tested for two weeks before it earns the Maison Temps mark on its bridge.
+        - link "Discover the Atelier" [ref=e417] [cursor=pointer]:
+          - /url: /craftsmanship
+      - generic [ref=e418]:
+        - generic [ref=e419]:
+          - generic [ref=e420]:
+            - generic [ref=e421]: The Journal
+            - heading "Notes from the Maison." [level=2] [ref=e422]
+          - link "Read the Journal" [ref=e423] [cursor=pointer]:
+            - /url: /journal
+        - generic [ref=e424]:
+          - link [ref=e425] [cursor=pointer]:
+            - /url: /journal/choosing-your-case-size-40mm-vs-45mm
+            - paragraph [ref=e427]: Buying Guide
+            - 'heading "Choosing Your Case Size: 40mm vs 45mm" [level=3] [ref=e428]'
+            - paragraph [ref=e429]: Wrist size, cuff clearance, and the case that actually wears the way it looks in photos.
+          - link [ref=e430] [cursor=pointer]:
+            - /url: /journal/the-language-of-complications
+            - paragraph [ref=e432]: Horology
+            - heading "The Language of Complications" [level=3] [ref=e433]
+            - paragraph [ref=e434]: What a chronograph, a GMT, and a moonphase are each actually doing under the dial.
+          - link [ref=e435] [cursor=pointer]:
+            - /url: /journal/a-short-history-of-the-chronograph
+            - paragraph [ref=e437]: Heritage
+            - heading "A Short History of the Chronograph" [level=3] [ref=e438]
+            - paragraph [ref=e439]: From pocket-watch stopwatches to the wrist — how the pusher earned its place.
+      - generic [ref=e441]:
+        - generic [ref=e442]:
+          - generic [ref=e443]: Boutiques
+          - heading "See it, try it, on your wrist." [level=2] [ref=e444]
+          - paragraph [ref=e445]: Book a private appointment at one of our boutiques for a fitting, an engraving consultation, or simply to see the finishing in person.
+          - link "Find a Boutique" [ref=e446] [cursor=pointer]:
+            - /url: /boutiques
+        - list [ref=e447]:
+          - listitem [ref=e448]:
+            - generic [ref=e449]: New York
+            - generic [ref=e450]: 5th Avenue, Manhattan
+          - listitem [ref=e451]:
+            - generic [ref=e452]: London
+            - generic [ref=e453]: Regent Street, Mayfair
+          - listitem [ref=e454]:
+            - generic [ref=e455]: Tokyo
+            - generic [ref=e456]: Shibuya, Tokyo
+          - listitem [ref=e457]:
+            - generic [ref=e458]: Dubai
+            - generic [ref=e459]: The Dubai Mall
+      - generic [ref=e461]:
+        - generic [ref=e462]:
+          - heading "5-Year Warranty" [level=3] [ref=e466]
+          - paragraph [ref=e467]: Every movement is covered, transferable to whoever wears it next.
+        - generic [ref=e468]:
+          - heading "Complimentary Engraving" [level=3] [ref=e471]
+          - paragraph [ref=e472]: A caseback inscription, included on every order at no extra cost.
+        - generic [ref=e473]:
+          - heading "Insured Shipping" [level=3] [ref=e479]
+          - paragraph [ref=e480]: Fully insured delivery, with free returns within 30 days.
+        - generic [ref=e481]:
+          - heading "Lifetime Authentication" [level=3] [ref=e485]
+          - paragraph [ref=e486]: A registered certificate of authenticity for every reference sold.
+  - contentinfo [ref=e487]:
+    - generic [ref=e488]:
+      - generic [ref=e489]:
+        - generic [ref=e490]:
+          - generic [ref=e491]: Stay in time
+          - heading "Set your time." [level=2] [ref=e492]
+          - paragraph [ref=e493]: New references, atelier stories, and boutique invitations — sent a few times a year, never more.
+          - generic [ref=e494]:
+            - generic [ref=e495]: Email address
+            - textbox "Email address" [ref=e496]
+            - button "Subscribe" [ref=e497] [cursor=pointer]
+        - generic [ref=e498]:
+          - generic [ref=e499]:
+            - heading "Shop" [level=3] [ref=e500]
+            - list [ref=e501]:
+              - listitem [ref=e502]:
+                - link "Collections" [ref=e503] [cursor=pointer]:
+                  - /url: /collections
+              - listitem [ref=e504]:
+                - link "All Watches" [ref=e505] [cursor=pointer]:
+                  - /url: /watches
+              - listitem [ref=e506]:
+                - link "Wishlist" [ref=e507] [cursor=pointer]:
+                  - /url: /wishlist
+          - generic [ref=e508]:
+            - heading "The Maison" [level=3] [ref=e509]
+            - list [ref=e510]:
+              - listitem [ref=e511]:
+                - link "Our Story" [ref=e512] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e513]:
+                - link "Craftsmanship" [ref=e514] [cursor=pointer]:
+                  - /url: /craftsmanship
+              - listitem [ref=e515]:
+                - link "Journal" [ref=e516] [cursor=pointer]:
+                  - /url: /journal
+              - listitem [ref=e517]:
+                - link "Boutiques" [ref=e518] [cursor=pointer]:
+                  - /url: /boutiques
+          - generic [ref=e519]:
+            - heading "Support" [level=3] [ref=e520]
+            - list [ref=e521]:
+              - listitem [ref=e522]:
+                - link "Contact Us" [ref=e523] [cursor=pointer]:
+                  - /url: /contact
+              - listitem [ref=e524]:
+                - link "FAQ" [ref=e525] [cursor=pointer]:
+                  - /url: /faq
+              - listitem [ref=e526]:
+                - link "Warranty & Repair" [ref=e527] [cursor=pointer]:
+                  - /url: /services
+          - generic [ref=e528]:
+            - heading "Legal" [level=3] [ref=e529]
+            - list [ref=e530]:
+              - listitem [ref=e531]:
+                - link "Privacy Policy" [ref=e532] [cursor=pointer]:
+                  - /url: /privacy
+              - listitem [ref=e533]:
+                - link "Terms of Service" [ref=e534] [cursor=pointer]:
+                  - /url: /terms
+              - listitem [ref=e535]:
+                - link "Shipping & Returns" [ref=e536] [cursor=pointer]:
+                  - /url: /shipping-returns
+      - generic [ref=e537]:
+        - paragraph [ref=e538]: © 2026 Maison Temps. All rights reserved.
+        - generic [ref=e539]:
+          - link "Instagram" [ref=e540] [cursor=pointer]:
+            - /url: https://instagram.com
+          - link "Facebook" [ref=e545] [cursor=pointer]:
+            - /url: https://facebook.com
+          - link "YouTube" [ref=e548] [cursor=pointer]:
+            - /url: https://youtube.com
+  - button "Open Next.js Dev Tools" [ref=e557] [cursor=pointer]:
+    - generic [ref=e560]:
+      - text: Compiling
+      - generic [ref=e561]:
+        - generic [ref=e562]: .
+        - generic [ref=e563]: .
+        - generic [ref=e564]: .

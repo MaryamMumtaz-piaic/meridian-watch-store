@@ -6,33 +6,13 @@ const adapter = new PrismaBetterSqlite3({
 });
 const prisma = new PrismaClient({ adapter });
 
-const UNSPLASH_PARAMS = "?q=80&w=1600&auto=format&fit=crop";
-
-const IMAGES = [
-  "https://images.unsplash.com/photo-1758071348980-d1eed770f34f",
-  "https://images.unsplash.com/photo-1605143185650-77944b152643",
-  "https://images.unsplash.com/photo-1749843205755-f191e6430a4d",
-  "https://images.unsplash.com/photo-1605143185597-9fe1a8065fbb",
-  "https://images.unsplash.com/photo-1569819969052-83cf0210161d",
-  "https://images.unsplash.com/photo-1758887952896-8491d393afe2",
-  "https://images.unsplash.com/photo-1631286964587-d0f26936b263",
-  "https://images.unsplash.com/photo-1760532466984-39c3eb7f1254",
-  "https://images.unsplash.com/photo-1658910453954-6ca847bb7470",
-].map((url) => url + UNSPLASH_PARAMS);
-
-function imagesFor(index: number) {
-  const a = IMAGES[index % IMAGES.length];
-  const b = IMAGES[(index + 3) % IMAGES.length];
-  return JSON.stringify([a, b]);
-}
-
 const COLLECTIONS = [
   {
     slug: "aero",
     name: "Aero",
     description:
       "Lightweight titanium cases, built for the instrument panel. The Aero line pairs pilot-watch legibility with GMT and chronograph complications for people who live across time zones.",
-    heroImage: IMAGES[4],
+    heroImage: "/product/17.jpg",
     sortOrder: 1,
   },
   {
@@ -40,7 +20,7 @@ const COLLECTIONS = [
     name: "Pulse",
     description:
       "Precision sport chronographs, built to keep time under pressure. Pulse is the collection for the track, the dive deck, and every stopwatch moment in between.",
-    heroImage: IMAGES[1],
+    heroImage: "/product/21.jpg",
     sortOrder: 2,
   },
   {
@@ -48,7 +28,7 @@ const COLLECTIONS = [
     name: "Studio",
     description:
       "Dress watches for the considered wardrobe — round cases, quiet dials, and finishing meant to be looked at closely.",
-    heroImage: IMAGES[7],
+    heroImage: "/product/12.jpg",
     sortOrder: 3,
   },
   {
@@ -56,7 +36,7 @@ const COLLECTIONS = [
     name: "Summit",
     description:
       "Expedition-rated tool watches, engineered for altitude and depth. Summit is built to be worn somewhere further than the office.",
-    heroImage: IMAGES[2],
+    heroImage: "/product/11.png",
     sortOrder: 4,
   },
 ];
@@ -74,250 +54,219 @@ const PRODUCTS: {
   sku: string;
   featured: boolean;
   description: string;
+  images: string[];
 }[] = [
   // Aero
   {
-    slug: "aero-slim-40",
-    name: "Aero Slim 40",
+    slug: "aero-voyager-40",
+    name: "Aero Voyager 40",
     collection: "aero",
-    category: "Pilot",
-    movement: "Automatic",
+    category: "GMT",
+    movement: "Automatic GMT",
     caseSize: "40mm",
-    caseMaterial: "Grade 5 Titanium",
+    caseMaterial: "Two-Tone Stainless Steel",
     waterResistance: "50m",
-    priceCents: 420000,
-    sku: "MT-AERO-SLIM40",
+    priceCents: 480000,
+    sku: "MT-AERO-V40",
     featured: true,
     description:
-      "A pilot's watch stripped to essentials — a 40mm titanium case, oversized indices, and a movement thin enough to disappear under a cuff.",
+      "A travel-ready dress GMT in two-tone steel — a deep navy dial, a gold-tone bezel, and a bracelet built for the wrist that never quite lands.",
+    images: ["/product/17.jpg"],
   },
   {
-    slug: "aero-gmt-42",
-    name: "Aero GMT 42",
+    slug: "aero-command-41",
+    name: "Aero Command 41",
     collection: "aero",
-    category: "Pilot",
+    category: "Field GMT",
     movement: "Automatic GMT",
-    caseSize: "42mm",
-    caseMaterial: "Grade 5 Titanium",
-    waterResistance: "100m",
-    priceCents: 510000,
-    sku: "MT-AERO-GMT42",
-    featured: false,
-    description:
-      "A second time zone at a glance, for the wrist that crosses more borders than most. Titanium case, sapphire caseback.",
-  },
-  {
-    slug: "aero-air-titanium",
-    name: "Aero Air Titanium",
-    collection: "aero",
-    category: "Pilot",
-    movement: "Automatic Chronograph",
-    caseSize: "43mm",
-    caseMaterial: "Grade 5 Titanium",
-    waterResistance: "100m",
-    priceCents: 580000,
-    sku: "MT-AERO-AIR43",
-    featured: false,
-    description:
-      "The instrument-panel chronograph — bead-blasted titanium, a matte dial, and pushers sized to be read and used without looking twice.",
-  },
-  {
-    slug: "aero-carbon-41",
-    name: "Aero Carbon 41",
-    collection: "aero",
-    category: "Pilot",
-    movement: "Automatic",
     caseSize: "41mm",
-    caseMaterial: "Forged Carbon",
-    waterResistance: "50m",
-    priceCents: 460000,
-    sku: "MT-AERO-CARBON41",
+    caseMaterial: "Gold-Tone Stainless Steel",
+    waterResistance: "100m",
+    priceCents: 520000,
+    sku: "MT-AERO-CMD41",
     featured: false,
     description:
-      "Forged carbon over a titanium core — the lightest case in the collection, finished with a matte-black dial for low-glare cockpit legibility.",
+      "A 24-hour military dial and a red GMT hand, cased in gold-tone steel — built to be read fast, in low light, from across a room.",
+    images: ["/product/20.png"],
   },
   // Pulse
   {
-    slug: "pulse-41-aluminum",
-    name: "Pulse 41 Aluminum",
+    slug: "pulse-octane-42",
+    name: "Pulse Octane 42",
     collection: "pulse",
-    category: "Chronograph",
-    movement: "Automatic Chronograph",
-    caseSize: "41mm",
-    caseMaterial: "Anodized Aluminum",
-    waterResistance: "100m",
-    priceCents: 380000,
-    sku: "MT-PULSE-AL41",
-    featured: true,
-    description:
-      "A lightweight sport chronograph built for split-second reading — anodized aluminum case, screw-down pushers, unidirectional bezel.",
-  },
-  {
-    slug: "pulse-45-sport",
-    name: "Pulse 45 Sport",
-    collection: "pulse",
-    category: "Chronograph",
-    movement: "Automatic Chronograph",
-    caseSize: "45mm",
-    caseMaterial: "Stainless Steel",
-    waterResistance: "200m",
-    priceCents: 490000,
-    sku: "MT-PULSE-SPORT45",
-    featured: true,
-    description:
-      "The largest case in the Pulse line — built for the track and rated to 200m, with a tachymeter bezel for pace timing.",
-  },
-  {
-    slug: "pulse-se",
-    name: "Pulse SE",
-    collection: "pulse",
-    category: "Chronograph",
+    category: "Sport",
     movement: "Automatic",
     caseSize: "42mm",
-    caseMaterial: "Stainless Steel",
+    caseMaterial: "Gold-Tone Stainless Steel",
     waterResistance: "100m",
-    priceCents: 430000,
-    sku: "MT-PULSE-SE42",
-    featured: false,
+    priceCents: 560000,
+    sku: "MT-PULSE-OCT42",
+    featured: true,
     description:
-      "The three-hand entry point to Pulse — same case architecture, same water resistance, without the chronograph complication.",
+      "An angular integrated-bracelet sport case with exposed case screws — the boldest silhouette in the Pulse line, finished in gold-tone steel.",
+    images: ["/product/21.jpg"],
   },
   {
-    slug: "pulse-racing-44",
-    name: "Pulse Racing 44",
+    slug: "pulse-chronograph-43",
+    name: "Pulse Chronograph 43",
     collection: "pulse",
     category: "Chronograph",
     movement: "Automatic Chronograph",
-    caseSize: "44mm",
-    caseMaterial: "Stainless Steel",
+    caseSize: "43mm",
+    caseMaterial: "Two-Tone Stainless Steel",
     waterResistance: "100m",
-    priceCents: 520000,
-    sku: "MT-PULSE-RACE44",
+    priceCents: 590000,
+    sku: "MT-PULSE-CHR43",
+    featured: true,
+    description:
+      "Three registers, a 24-hour sub-dial, and a lacquer-red chronograph hand — Pulse Chronograph is built for anyone who actually times things.",
+    images: ["/product/23.jpg"],
+  },
+  {
+    slug: "pulse-hybrid-44",
+    name: "Pulse Hybrid 44",
+    collection: "pulse",
+    category: "Ana-Digi",
+    movement: "Analog-Digital Quartz",
+    caseSize: "44mm",
+    caseMaterial: "Rose Gold-Tone Stainless Steel",
+    waterResistance: "100m",
+    priceCents: 470000,
+    sku: "MT-PULSE-HYB44",
     featured: false,
     description:
-      "A perforated strap and a high-contrast dial, built in the language of 1960s motorsport chronographs.",
+      "An analog-digital hybrid with a forest-green dial and a lap counter built in — the technical end of the Pulse collection.",
+    images: ["/product/24.jpg"],
   },
   // Studio
   {
-    slug: "studio-round-42",
-    name: "Studio Round 42",
-    collection: "studio",
-    category: "Dress",
-    movement: "Automatic",
-    caseSize: "42mm",
-    caseMaterial: "Stainless Steel",
-    waterResistance: "30m",
-    priceCents: 560000,
-    sku: "MT-STUDIO-RND42",
-    featured: true,
-    description:
-      "The Studio signature — a round case, a sunburst dial, and hands thinned to a hairline so nothing competes with the time.",
-  },
-  {
-    slug: "studio-ceramic",
-    name: "Studio Ceramic",
+    slug: "studio-meridian-40",
+    name: "Studio Meridian 40",
     collection: "studio",
     category: "Dress",
     movement: "Automatic",
     caseSize: "40mm",
-    caseMaterial: "High-Tech Ceramic",
+    caseMaterial: "Two-Tone Stainless Steel",
     waterResistance: "30m",
-    priceCents: 640000,
-    sku: "MT-STUDIO-CER40",
-    featured: false,
+    priceCents: 420000,
+    sku: "MT-STUDIO-MER40",
+    featured: true,
     description:
-      "A ceramic case that won't scratch or fade, finished to the same mirror polish as our steel references.",
+      "A navy sunray dial under a gold-tone bezel — the watch we'd put on before a meeting that actually matters.",
+    images: ["/product/12.jpg"],
   },
   {
-    slug: "studio-leather-edition",
-    name: "Studio Leather Edition",
+    slug: "studio-reserve-39",
+    name: "Studio Reserve 39",
     collection: "studio",
     category: "Dress",
-    movement: "Hand-Wound",
-    caseSize: "38mm",
-    caseMaterial: "Stainless Steel",
+    movement: "Automatic Small Seconds",
+    caseSize: "39mm",
+    caseMaterial: "Two-Tone Stainless Steel",
     waterResistance: "30m",
-    priceCents: 490000,
-    sku: "MT-STUDIO-LTH38",
+    priceCents: 450000,
+    sku: "MT-STUDIO-RES39",
     featured: false,
     description:
-      "A hand-wound movement in a slim 38mm case, on a hand-burnished calfskin strap — the smallest watch we make.",
+      "A forest-green dial, a single roman numeral, and a small-seconds sub-dial set low — quiet detailing for people who notice quiet detailing.",
+    images: ["/product/13.jpg"],
   },
   {
-    slug: "studio-moonphase",
-    name: "Studio Moonphase",
+    slug: "studio-sovereign-41",
+    name: "Studio Sovereign 41",
     collection: "studio",
     category: "Dress",
-    movement: "Automatic Moonphase",
+    movement: "Automatic Day-Date",
+    caseSize: "41mm",
+    caseMaterial: "Gold-Tone Stainless Steel",
+    waterResistance: "30m",
+    priceCents: 720000,
+    sku: "MT-STUDIO-SOV41",
+    featured: true,
+    description:
+      "Diamond-set hour markers, a day-date window, and a full gold-tone bracelet — the most formal watch in the Studio line.",
+    images: ["/product/15.jpg"],
+  },
+  {
+    slug: "studio-facet-40",
+    name: "Studio Facet 40",
+    collection: "studio",
+    category: "Dress",
+    movement: "Automatic",
     caseSize: "40mm",
     caseMaterial: "Stainless Steel",
     waterResistance: "30m",
-    priceCents: 820000,
-    sku: "MT-STUDIO-MOON40",
-    featured: true,
+    priceCents: 380000,
+    sku: "MT-STUDIO-FAC40",
+    featured: false,
     description:
-      "Our only complication watch — a moonphase disc tracking the lunar cycle to within one day per 122 years.",
+      "A multi-faceted bezel catches the light the textured dial doesn't need — clean, quiet, and cut like a jewel.",
+    images: ["/product/18.png"],
+  },
+  {
+    slug: "studio-aurora-36",
+    name: "Studio Aurora 36",
+    collection: "studio",
+    category: "Dress",
+    movement: "Automatic",
+    caseSize: "36mm",
+    caseMaterial: "Two-Tone Rose Gold Steel",
+    waterResistance: "30m",
+    priceCents: 810000,
+    sku: "MT-STUDIO-AUR36",
+    featured: false,
+    description:
+      "A diamond-set bezel and a rose-gold case on our smallest reference — Studio Aurora is dress-watch jewelry.",
+    images: ["/product/19.png"],
   },
   // Summit
   {
-    slug: "summit-titanium-49",
-    name: "Summit Titanium 49",
+    slug: "summit-onyx-42",
+    name: "Summit Onyx 42",
     collection: "summit",
-    category: "Diver",
-    movement: "Automatic",
-    caseSize: "49mm",
-    caseMaterial: "Grade 5 Titanium",
-    waterResistance: "300m",
-    priceCents: 790000,
-    sku: "MT-SUMMIT-TI49",
+    category: "Tool",
+    movement: "Automatic Day-Date",
+    caseSize: "42mm",
+    caseMaterial: "Black-Coated Stainless Steel",
+    waterResistance: "100m",
+    priceCents: 560000,
+    sku: "MT-SUMMIT-ONX42",
     featured: true,
     description:
-      "Our largest case, built for altitude and depth alike — titanium construction, a helium escape valve, and a 300m rating.",
+      "An all-black case with diamond-set hour markers — day-date function, a full bracelet, and a finish that shrugs off scrapes.",
+    images: ["/product/11.png"],
   },
   {
-    slug: "summit-carbon",
-    name: "Summit Carbon",
+    slug: "summit-expedition-43",
+    name: "Summit Expedition 43",
     collection: "summit",
-    category: "Diver",
+    category: "Field",
     movement: "Automatic",
-    caseSize: "44mm",
-    caseMaterial: "Forged Carbon",
-    waterResistance: "200m",
-    priceCents: 610000,
-    sku: "MT-SUMMIT-CARB44",
-    featured: false,
+    caseSize: "43mm",
+    caseMaterial: "Rose Gold-Tone Steel",
+    waterResistance: "100m",
+    priceCents: 640000,
+    sku: "MT-SUMMIT-EXP43",
+    featured: true,
     description:
-      "Forged carbon fiber over a steel core, rated to 200m — the toughest, lightest case we build.",
-  },
-  {
-    slug: "summit-expedition",
-    name: "Summit Expedition",
-    collection: "summit",
-    category: "Diver",
-    movement: "Automatic GMT",
-    caseSize: "46mm",
-    caseMaterial: "Stainless Steel",
-    waterResistance: "200m",
-    priceCents: 720000,
-    sku: "MT-SUMMIT-EXP46",
-    featured: false,
-    description:
-      "A GMT complication built for the field, not the office — a 24-hour bezel, a snowflake hour hand, and a case built to take a hit.",
+      "A cushion case built for terrain, not the office — a striped black dial, a red running-seconds hand, and a leather strap that's meant to scuff.",
+    images: ["/product/14.jpg", "/product/16.png"],
   },
   {
     slug: "summit-depth-300",
     name: "Summit Depth 300",
     collection: "summit",
     category: "Diver",
-    movement: "Automatic",
+    movement: "Automatic Day-Date",
     caseSize: "42mm",
-    caseMaterial: "Stainless Steel",
+    caseMaterial: "Gold-Tone Stainless Steel",
     waterResistance: "300m",
-    priceCents: 570000,
+    priceCents: 610000,
     sku: "MT-SUMMIT-D300",
     featured: false,
     description:
-      "The entry point to Summit — a true dive watch at 42mm, unidirectional bezel, and full 300m water resistance.",
+      "A unidirectional dive bezel and full 300m water resistance, cased in gold-tone steel — the depth-rated end of the Summit collection.",
+    images: ["/product/22.jpg"],
   },
 ];
 
@@ -340,7 +289,7 @@ async function main() {
   }
 
   console.log("Seeding products...");
-  for (const [index, p] of PRODUCTS.entries()) {
+  for (const p of PRODUCTS) {
     const collectionId = collectionIds.get(p.collection);
     if (!collectionId) throw new Error(`Unknown collection: ${p.collection}`);
 
@@ -356,7 +305,7 @@ async function main() {
         caseMaterial: p.caseMaterial,
         waterResistance: p.waterResistance,
         priceCents: p.priceCents,
-        images: imagesFor(index),
+        images: JSON.stringify(p.images),
         stock: 12,
         sku: p.sku,
         featured: p.featured,
@@ -372,7 +321,7 @@ async function main() {
         caseMaterial: p.caseMaterial,
         waterResistance: p.waterResistance,
         priceCents: p.priceCents,
-        images: imagesFor(index),
+        images: JSON.stringify(p.images),
         stock: 12,
         sku: p.sku,
         featured: p.featured,
@@ -380,7 +329,13 @@ async function main() {
     });
   }
 
-  console.log(`Seeded ${COLLECTIONS.length} collections and ${PRODUCTS.length} products.`);
+  console.log("Removing retired products...");
+  const currentSlugs = PRODUCTS.map((p) => p.slug);
+  const removed = await prisma.product.deleteMany({
+    where: { slug: { notIn: currentSlugs } },
+  });
+
+  console.log(`Seeded ${COLLECTIONS.length} collections and ${PRODUCTS.length} products (removed ${removed.count} old products).`);
 }
 
 main()

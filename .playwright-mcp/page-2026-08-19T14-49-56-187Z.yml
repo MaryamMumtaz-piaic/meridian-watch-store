@@ -1,0 +1,424 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Maison Temps" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=e11]:
+        - link "Collections" [ref=e12] [cursor=pointer]:
+          - /url: /collections
+        - link "Watches" [ref=e13] [cursor=pointer]:
+          - /url: /watches
+        - link "Craftsmanship" [ref=e14] [cursor=pointer]:
+          - /url: /craftsmanship
+        - link "Journal" [ref=e15] [cursor=pointer]:
+          - /url: /journal
+        - link "Boutiques" [ref=e16] [cursor=pointer]:
+          - /url: /boutiques
+      - generic [ref=e17]:
+        - button "Search" [ref=e18] [cursor=pointer]
+        - link "Wishlist" [ref=e22] [cursor=pointer]:
+          - /url: /wishlist
+        - link "Account" [ref=e25] [cursor=pointer]:
+          - /url: /account
+        - link "Cart" [ref=e29] [cursor=pointer]:
+          - /url: /cart
+  - main [ref=e33]:
+    - generic [ref=e34]:
+      - region "Featured watches" [ref=e35]:
+        - paragraph [ref=e36]: Now showing Summit Titanium 49, Summit, $7,900
+        - generic [ref=e37]:
+          - generic [ref=e38]:
+            - generic [ref=e39]: Reference No. 001 — Since 2026
+            - heading [level=1] [ref=e40]:
+              - text: Time, made to be
+              - emphasis [ref=e41]: kept.
+            - paragraph [ref=e42]: Maison Temps crafts fine mechanical watches for people who measure things in decades, not seasons.
+            - generic [ref=e43]:
+              - link "Shop the Collection" [ref=e44] [cursor=pointer]:
+                - /url: /watches
+              - link "Discover the Atelier" [ref=e48] [cursor=pointer]:
+                - /url: /craftsmanship
+            - generic [ref=e50]:
+              - generic [ref=e51]: 5-Year Warranty
+              - generic [ref=e56]: Insured Shipping
+              - generic [ref=e63]: Lifetime Authentication
+          - generic [ref=e71]:
+            - img "Summit Titanium 49" [ref=e72]
+            - img "Studio Moonphase" [ref=e73]
+            - img "Studio Round 42" [ref=e74]
+            - img "Pulse 45 Sport" [ref=e75]
+            - img "Pulse 41 Aluminum" [ref=e76]
+            - generic [ref=e77]: Sale
+            - generic [ref=e78]:
+              - generic [ref=e79]:
+                - paragraph [ref=e80]: Summit · 49mm
+                - link "Summit Titanium 49" [ref=e81] [cursor=pointer]:
+                  - /url: /watches/summit-titanium-49
+              - paragraph [ref=e82]: $7,900
+      - generic [ref=e83]:
+        - generic [ref=e85]:
+          - generic [ref=e86]:
+            - generic [ref=e87]: The Collections
+            - heading [level=2] [ref=e88]:
+              - text: Four families.
+              - emphasis [ref=e89]: One standard.
+          - link "View All" [ref=e90] [cursor=pointer]:
+            - /url: /collections
+        - generic [ref=e98]:
+          - link "Explore Aero" [ref=e99] [cursor=pointer]:
+            - /url: /collections/aero
+            - generic [ref=e100]:
+              - generic [ref=e101]: "01"
+              - img "Aero" [ref=e102]
+            - generic [ref=e103]:
+              - generic [ref=e104]:
+                - heading "Aero" [level=3] [ref=e105]
+                - generic [ref=e106]: Explore
+              - paragraph [ref=e110]: Lightweight titanium cases, built for the instrument panel. The Aero line pairs pilot-watch legibility with GMT and chronograph complications for people who live across time zones.
+          - link "Explore Pulse" [ref=e111] [cursor=pointer]:
+            - /url: /collections/pulse
+            - generic [ref=e112]:
+              - generic [ref=e113]: "02"
+              - img "Pulse" [ref=e114]
+            - generic [ref=e115]:
+              - generic [ref=e116]:
+                - heading "Pulse" [level=3] [ref=e117]
+                - generic [ref=e118]: Explore
+              - paragraph [ref=e122]: Precision sport chronographs, built to keep time under pressure. Pulse is the collection for the track, the dive deck, and every stopwatch moment in between.
+          - link "Explore Studio" [ref=e123] [cursor=pointer]:
+            - /url: /collections/studio
+            - generic [ref=e124]:
+              - generic [ref=e125]: "03"
+              - img "Studio" [ref=e126]
+            - generic [ref=e127]:
+              - generic [ref=e128]:
+                - heading "Studio" [level=3] [ref=e129]
+                - generic [ref=e130]: Explore
+              - paragraph [ref=e134]: Dress watches for the considered wardrobe — round cases, quiet dials, and finishing meant to be looked at closely.
+          - link "Explore Summit" [ref=e135] [cursor=pointer]:
+            - /url: /collections/summit
+            - generic [ref=e136]:
+              - generic [ref=e137]: "04"
+              - img "Summit" [ref=e138]
+            - generic [ref=e139]:
+              - generic [ref=e140]:
+                - heading "Summit" [level=3] [ref=e141]
+                - generic [ref=e142]: Explore
+              - paragraph [ref=e146]: Expedition-rated tool watches, engineered for altitude and depth. Summit is built to be worn somewhere further than the office.
+          - link "Explore Aero" [ref=e147] [cursor=pointer]:
+            - /url: /collections/aero
+            - generic [ref=e148]:
+              - generic [ref=e149]: "01"
+              - img "Aero" [ref=e150]
+            - generic [ref=e151]:
+              - generic [ref=e152]:
+                - heading "Aero" [level=3] [ref=e153]
+                - generic [ref=e154]: Explore
+              - paragraph [ref=e158]: Lightweight titanium cases, built for the instrument panel. The Aero line pairs pilot-watch legibility with GMT and chronograph complications for people who live across time zones.
+          - link "Explore Pulse" [ref=e159] [cursor=pointer]:
+            - /url: /collections/pulse
+            - generic [ref=e160]:
+              - generic [ref=e161]: "02"
+              - img "Pulse" [ref=e162]
+            - generic [ref=e163]:
+              - generic [ref=e164]:
+                - heading "Pulse" [level=3] [ref=e165]
+                - generic [ref=e166]: Explore
+              - paragraph [ref=e170]: Precision sport chronographs, built to keep time under pressure. Pulse is the collection for the track, the dive deck, and every stopwatch moment in between.
+          - link "Explore Studio" [ref=e171] [cursor=pointer]:
+            - /url: /collections/studio
+            - generic [ref=e172]:
+              - generic [ref=e173]: "03"
+              - img "Studio" [ref=e174]
+            - generic [ref=e175]:
+              - generic [ref=e176]:
+                - heading "Studio" [level=3] [ref=e177]
+                - generic [ref=e178]: Explore
+              - paragraph [ref=e182]: Dress watches for the considered wardrobe — round cases, quiet dials, and finishing meant to be looked at closely.
+          - link "Explore Summit" [ref=e183] [cursor=pointer]:
+            - /url: /collections/summit
+            - generic [ref=e184]:
+              - generic [ref=e185]: "04"
+              - img "Summit" [ref=e186]
+            - generic [ref=e187]:
+              - generic [ref=e188]:
+                - heading "Summit" [level=3] [ref=e189]
+                - generic [ref=e190]: Explore
+              - paragraph [ref=e194]: Expedition-rated tool watches, engineered for altitude and depth. Summit is built to be worn somewhere further than the office.
+          - link "Explore Aero" [ref=e195] [cursor=pointer]:
+            - /url: /collections/aero
+            - generic [ref=e196]:
+              - generic [ref=e197]: "01"
+              - img "Aero" [ref=e198]
+            - generic [ref=e199]:
+              - generic [ref=e200]:
+                - heading "Aero" [level=3] [ref=e201]
+                - generic [ref=e202]: Explore
+              - paragraph [ref=e206]: Lightweight titanium cases, built for the instrument panel. The Aero line pairs pilot-watch legibility with GMT and chronograph complications for people who live across time zones.
+          - link "Explore Pulse" [ref=e207] [cursor=pointer]:
+            - /url: /collections/pulse
+            - generic [ref=e208]:
+              - generic [ref=e209]: "02"
+              - img "Pulse" [ref=e210]
+            - generic [ref=e211]:
+              - generic [ref=e212]:
+                - heading "Pulse" [level=3] [ref=e213]
+                - generic [ref=e214]: Explore
+              - paragraph [ref=e218]: Precision sport chronographs, built to keep time under pressure. Pulse is the collection for the track, the dive deck, and every stopwatch moment in between.
+          - link "Explore Studio" [ref=e219] [cursor=pointer]:
+            - /url: /collections/studio
+            - generic [ref=e220]:
+              - generic [ref=e221]: "03"
+              - img "Studio" [ref=e222]
+            - generic [ref=e223]:
+              - generic [ref=e224]:
+                - heading "Studio" [level=3] [ref=e225]
+                - generic [ref=e226]: Explore
+              - paragraph [ref=e230]: Dress watches for the considered wardrobe — round cases, quiet dials, and finishing meant to be looked at closely.
+          - link "Explore Summit" [ref=e231] [cursor=pointer]:
+            - /url: /collections/summit
+            - generic [ref=e232]:
+              - generic [ref=e233]: "04"
+              - img "Summit" [ref=e234]
+            - generic [ref=e235]:
+              - generic [ref=e236]:
+                - heading "Summit" [level=3] [ref=e237]
+                - generic [ref=e238]: Explore
+              - paragraph [ref=e242]: Expedition-rated tool watches, engineered for altitude and depth. Summit is built to be worn somewhere further than the office.
+          - link "Explore Aero" [ref=e243] [cursor=pointer]:
+            - /url: /collections/aero
+            - generic [ref=e244]:
+              - generic [ref=e245]: "01"
+              - img "Aero" [ref=e246]
+            - generic [ref=e247]:
+              - generic [ref=e248]:
+                - heading "Aero" [level=3] [ref=e249]
+                - generic [ref=e250]: Explore
+              - paragraph [ref=e254]: Lightweight titanium cases, built for the instrument panel. The Aero line pairs pilot-watch legibility with GMT and chronograph complications for people who live across time zones.
+          - link "Explore Pulse" [ref=e255] [cursor=pointer]:
+            - /url: /collections/pulse
+            - generic [ref=e256]:
+              - generic [ref=e257]: "02"
+              - img "Pulse" [ref=e258]
+            - generic [ref=e259]:
+              - generic [ref=e260]:
+                - heading "Pulse" [level=3] [ref=e261]
+                - generic [ref=e262]: Explore
+              - paragraph [ref=e266]: Precision sport chronographs, built to keep time under pressure. Pulse is the collection for the track, the dive deck, and every stopwatch moment in between.
+          - link "Explore Studio" [ref=e267] [cursor=pointer]:
+            - /url: /collections/studio
+            - generic [ref=e268]:
+              - generic [ref=e269]: "03"
+              - img "Studio" [ref=e270]
+            - generic [ref=e271]:
+              - generic [ref=e272]:
+                - heading "Studio" [level=3] [ref=e273]
+                - generic [ref=e274]: Explore
+              - paragraph [ref=e278]: Dress watches for the considered wardrobe — round cases, quiet dials, and finishing meant to be looked at closely.
+          - link "Explore Summit" [ref=e279] [cursor=pointer]:
+            - /url: /collections/summit
+            - generic [ref=e280]:
+              - generic [ref=e281]: "04"
+              - img "Summit" [ref=e282]
+            - generic [ref=e283]:
+              - generic [ref=e284]:
+                - heading "Summit" [level=3] [ref=e285]
+                - generic [ref=e286]: Explore
+              - paragraph [ref=e290]: Expedition-rated tool watches, engineered for altitude and depth. Summit is built to be worn somewhere further than the office.
+      - generic [ref=e291]:
+        - generic [ref=e292]:
+          - generic [ref=e293]:
+            - generic [ref=e294]: New Arrivals
+            - heading "Just added to the case." [level=2] [ref=e295]
+          - link "Shop All Watches" [ref=e296] [cursor=pointer]:
+            - /url: /watches
+        - generic [ref=e297]:
+          - generic [ref=e298]:
+            - generic [ref=e299]:
+              - link [ref=e300] [cursor=pointer]:
+                - /url: /watches/summit-titanium-49
+                - img "Summit Titanium 49" [ref=e301]
+              - button "Add Summit Titanium 49 to wishlist" [ref=e302] [cursor=pointer]
+              - button "Add Summit Titanium 49 to cart" [ref=e305] [cursor=pointer]: Add to Cart
+            - link [ref=e309] [cursor=pointer]:
+              - /url: /watches/summit-titanium-49
+              - paragraph [ref=e310]: Summit · 49mm
+              - heading "Summit Titanium 49" [level=3] [ref=e311]
+              - paragraph [ref=e312]: $7,900
+          - generic [ref=e313]:
+            - generic [ref=e314]:
+              - link [ref=e315] [cursor=pointer]:
+                - /url: /watches/studio-moonphase
+                - img "Studio Moonphase" [ref=e316]
+              - button "Add Studio Moonphase to wishlist" [ref=e317] [cursor=pointer]
+              - button "Add Studio Moonphase to cart" [ref=e320] [cursor=pointer]: Add to Cart
+            - link [ref=e324] [cursor=pointer]:
+              - /url: /watches/studio-moonphase
+              - paragraph [ref=e325]: Studio · 40mm
+              - heading "Studio Moonphase" [level=3] [ref=e326]
+              - paragraph [ref=e327]: $8,200
+          - generic [ref=e328]:
+            - generic [ref=e329]:
+              - link [ref=e330] [cursor=pointer]:
+                - /url: /watches/studio-round-42
+                - img "Studio Round 42" [ref=e331]
+              - button "Add Studio Round 42 to wishlist" [ref=e332] [cursor=pointer]
+              - button "Add Studio Round 42 to cart" [ref=e335] [cursor=pointer]: Add to Cart
+            - link [ref=e339] [cursor=pointer]:
+              - /url: /watches/studio-round-42
+              - paragraph [ref=e340]: Studio · 42mm
+              - heading "Studio Round 42" [level=3] [ref=e341]
+              - paragraph [ref=e342]: $5,600
+          - generic [ref=e343]:
+            - generic [ref=e344]:
+              - link [ref=e345] [cursor=pointer]:
+                - /url: /watches/pulse-45-sport
+                - img "Pulse 45 Sport" [ref=e346]
+              - button "Add Pulse 45 Sport to wishlist" [ref=e347] [cursor=pointer]
+              - button "Add Pulse 45 Sport to cart" [ref=e350] [cursor=pointer]: Add to Cart
+            - link [ref=e354] [cursor=pointer]:
+              - /url: /watches/pulse-45-sport
+              - paragraph [ref=e355]: Pulse · 45mm
+              - heading "Pulse 45 Sport" [level=3] [ref=e356]
+              - paragraph [ref=e357]: $4,900
+      - generic [ref=e365]:
+        - generic [ref=e366]: Savoir-Faire
+        - heading "Every movement, hand-finished." [level=2] [ref=e367]
+        - paragraph [ref=e368]: Each caliber passes through the same bench for three days — beveled by hand, regulated in five positions, and tested for two weeks before it earns the Maison Temps mark on its bridge.
+        - link "Discover the Atelier" [ref=e369] [cursor=pointer]:
+          - /url: /craftsmanship
+      - generic [ref=e370]:
+        - generic [ref=e371]:
+          - generic [ref=e372]:
+            - generic [ref=e373]: The Journal
+            - heading "Notes from the Maison." [level=2] [ref=e374]
+          - link "Read the Journal" [ref=e375] [cursor=pointer]:
+            - /url: /journal
+        - generic [ref=e376]:
+          - link [ref=e377] [cursor=pointer]:
+            - /url: /journal/choosing-your-case-size-40mm-vs-45mm
+            - paragraph [ref=e379]: Buying Guide
+            - 'heading "Choosing Your Case Size: 40mm vs 45mm" [level=3] [ref=e380]'
+            - paragraph [ref=e381]: Wrist size, cuff clearance, and the case that actually wears the way it looks in photos.
+          - link [ref=e382] [cursor=pointer]:
+            - /url: /journal/the-language-of-complications
+            - paragraph [ref=e384]: Horology
+            - heading "The Language of Complications" [level=3] [ref=e385]
+            - paragraph [ref=e386]: What a chronograph, a GMT, and a moonphase are each actually doing under the dial.
+          - link [ref=e387] [cursor=pointer]:
+            - /url: /journal/a-short-history-of-the-chronograph
+            - paragraph [ref=e389]: Heritage
+            - heading "A Short History of the Chronograph" [level=3] [ref=e390]
+            - paragraph [ref=e391]: From pocket-watch stopwatches to the wrist — how the pusher earned its place.
+      - generic [ref=e393]:
+        - generic [ref=e394]:
+          - generic [ref=e395]: Boutiques
+          - heading "See it, try it, on your wrist." [level=2] [ref=e396]
+          - paragraph [ref=e397]: Book a private appointment at one of our boutiques for a fitting, an engraving consultation, or simply to see the finishing in person.
+          - link "Find a Boutique" [ref=e398] [cursor=pointer]:
+            - /url: /boutiques
+        - list [ref=e399]:
+          - listitem [ref=e400]:
+            - generic [ref=e401]: New York
+            - generic [ref=e402]: 5th Avenue, Manhattan
+          - listitem [ref=e403]:
+            - generic [ref=e404]: London
+            - generic [ref=e405]: Regent Street, Mayfair
+          - listitem [ref=e406]:
+            - generic [ref=e407]: Tokyo
+            - generic [ref=e408]: Shibuya, Tokyo
+          - listitem [ref=e409]:
+            - generic [ref=e410]: Dubai
+            - generic [ref=e411]: The Dubai Mall
+      - generic [ref=e413]:
+        - generic [ref=e414]:
+          - heading "5-Year Warranty" [level=3] [ref=e418]
+          - paragraph [ref=e419]: Every movement is covered, transferable to whoever wears it next.
+        - generic [ref=e420]:
+          - heading "Complimentary Engraving" [level=3] [ref=e423]
+          - paragraph [ref=e424]: A caseback inscription, included on every order at no extra cost.
+        - generic [ref=e425]:
+          - heading "Insured Shipping" [level=3] [ref=e431]
+          - paragraph [ref=e432]: Fully insured delivery, with free returns within 30 days.
+        - generic [ref=e433]:
+          - heading "Lifetime Authentication" [level=3] [ref=e437]
+          - paragraph [ref=e438]: A registered certificate of authenticity for every reference sold.
+  - contentinfo [ref=e439]:
+    - generic [ref=e440]:
+      - generic [ref=e441]:
+        - generic [ref=e442]:
+          - generic [ref=e443]: Stay in time
+          - heading "Set your time." [level=2] [ref=e444]
+          - paragraph [ref=e445]: New references, atelier stories, and boutique invitations — sent a few times a year, never more.
+          - generic [ref=e446]:
+            - generic [ref=e447]: Email address
+            - textbox "Email address" [ref=e448]
+            - button "Subscribe" [ref=e449] [cursor=pointer]
+        - generic [ref=e450]:
+          - generic [ref=e451]:
+            - heading "Shop" [level=3] [ref=e452]
+            - list [ref=e453]:
+              - listitem [ref=e454]:
+                - link "Collections" [ref=e455] [cursor=pointer]:
+                  - /url: /collections
+              - listitem [ref=e456]:
+                - link "All Watches" [ref=e457] [cursor=pointer]:
+                  - /url: /watches
+              - listitem [ref=e458]:
+                - link "Wishlist" [ref=e459] [cursor=pointer]:
+                  - /url: /wishlist
+          - generic [ref=e460]:
+            - heading "The Maison" [level=3] [ref=e461]
+            - list [ref=e462]:
+              - listitem [ref=e463]:
+                - link "Our Story" [ref=e464] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e465]:
+                - link "Craftsmanship" [ref=e466] [cursor=pointer]:
+                  - /url: /craftsmanship
+              - listitem [ref=e467]:
+                - link "Journal" [ref=e468] [cursor=pointer]:
+                  - /url: /journal
+              - listitem [ref=e469]:
+                - link "Boutiques" [ref=e470] [cursor=pointer]:
+                  - /url: /boutiques
+          - generic [ref=e471]:
+            - heading "Support" [level=3] [ref=e472]
+            - list [ref=e473]:
+              - listitem [ref=e474]:
+                - link "Contact Us" [ref=e475] [cursor=pointer]:
+                  - /url: /contact
+              - listitem [ref=e476]:
+                - link "FAQ" [ref=e477] [cursor=pointer]:
+                  - /url: /faq
+              - listitem [ref=e478]:
+                - link "Warranty & Repair" [ref=e479] [cursor=pointer]:
+                  - /url: /services
+          - generic [ref=e480]:
+            - heading "Legal" [level=3] [ref=e481]
+            - list [ref=e482]:
+              - listitem [ref=e483]:
+                - link "Privacy Policy" [ref=e484] [cursor=pointer]:
+                  - /url: /privacy
+              - listitem [ref=e485]:
+                - link "Terms of Service" [ref=e486] [cursor=pointer]:
+                  - /url: /terms
+              - listitem [ref=e487]:
+                - link "Shipping & Returns" [ref=e488] [cursor=pointer]:
+                  - /url: /shipping-returns
+      - generic [ref=e489]:
+        - paragraph [ref=e490]: © 2026 Maison Temps. All rights reserved.
+        - generic [ref=e491]:
+          - link "Instagram" [ref=e492] [cursor=pointer]:
+            - /url: https://instagram.com
+          - link "Facebook" [ref=e497] [cursor=pointer]:
+            - /url: https://facebook.com
+          - link "YouTube" [ref=e500] [cursor=pointer]:
+            - /url: https://youtube.com
+  - button "Open Next.js Dev Tools" [ref=e509] [cursor=pointer]:
+    - generic [ref=e512]:
+      - text: Compiling
+      - generic [ref=e513]:
+        - generic [ref=e514]: .
+        - generic [ref=e515]: .
+        - generic [ref=e516]: .
