@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Outfit, Cormorant_Garamond, JetBrains_Mono } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { CookieBanner } from "@/components/layout/cookie-banner";
+import { Providers } from "@/components/layout/providers";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -38,9 +40,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${outfit.variable} ${cormorant.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Header />
-        <main className="flex-1 pt-20">{children}</main>
-        <Footer />
+        <Providers>
+          <Header />
+          <main className="flex-1 pt-20">{children}</main>
+          <Footer />
+          <CookieBanner />
+        </Providers>
       </body>
     </html>
   );

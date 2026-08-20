@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore, type FormEvent } from "react";
 import { Menu, X, Search, Heart, User, ShoppingBag } from "lucide-react";
+import { useSession, signOut } from "next-auth/react";
 import { cn } from "@/lib/utils";
 import { useCartCount } from "@/lib/store/cart";
 import { useWishlistCount } from "@/lib/store/wishlist";
@@ -39,11 +40,14 @@ function IconBadge({ count }: { count: number }) {
 
 export function Header() {
   const router = useRouter();
+  const { data: session, status } = useSession();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
   const mounted = useIsMounted();
+
+  const isLoggedIn = status === "authenticated" && !!session;
 
   const cartCount = useCartCount();
   const wishlistCount = useWishlistCount();
@@ -130,13 +134,60 @@ export function Header() {
             <Heart className="h-[18px] w-[18px]" />
             {mounted && <IconBadge count={wishlistCount} />}
           </Link>
-          <Link
-            href="/account"
-            aria-label="Account"
-            className="cursor-pointer text-foreground transition-all duration-300 hover:scale-110 hover:text-gold"
-          >
-            <User className="h-[18px] w-[18px]" />
-          </Link>
+          {/* Auth: show Login+Register when logged out, User icon when logged in */}
+          {mounted && isLoggedIn ? (
+            <div className="relative group">
+              <Link
+                href="/account"
+                aria-label="My Account"
+                className="cursor-pointer text-foreground transition-all duration-300 hover:scale-110 hover:text-gold"
+              >
+                <User className="h-[18px] w-[18px]" />
+              </Link>
+              {/* Dropdown on hover */}
+              <div className="pointer-events-none absolute right-0 top-full z-50 w-44 translate-y-1 border border-hairline bg-background opacity-0 shadow-lg transition-all duration-200 group-hover:pointer-events-auto group-hover:opacity-100 group-hover:translate-y-0">
+                <div className="px-4 py-3 border-b border-hairline">
+                  <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-stone truncate">
+                    {session.user?.name ?? session.user?.email ?? "My Account"}
+                  </p>
+                </div>
+                <Link href="/account" className="flex items-center px-4 py-2.5 text-xs text-foreground/80 hover:text-gold hover:bg-secondary transition-colors">
+                  Dashboard
+                </Link>
+                <Link href="/account/orders" className="flex items-center px-4 py-2.5 text-xs text-foreground/80 hover:text-gold hover:bg-secondary transition-colors">
+                  My Orders
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => signOut({ callbackUrl: "/" })}
+                  className="flex w-full items-center px-4 py-2.5 text-xs text-foreground/80 hover:text-gold hover:bg-secondary transition-colors border-t border-hairline cursor-pointer"
+                >
+                  Sign Out
+                </button>
+              </div>
+            </div>
+          ) : mounted && !isLoggedIn ? (
+            <div className="hidden items-center gap-3 lg:flex">
+              <Link
+                href="/account/login"
+                className="text-xs font-medium uppercase tracking-[0.14em] text-foreground/80 transition-colors hover:text-gold"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/account/register"
+                className="border border-foreground px-4 py-1.5 text-xs font-medium uppercase tracking-[0.14em] text-foreground transition-all hover:border-gold hover:bg-gold hover:text-white"
+              >
+                Register
+              </Link>
+            </div>
+          ) : (
+            /* Loading state — reserve space to avoid layout shift */
+            <div className="hidden lg:flex items-center gap-3">
+              <div className="h-4 w-12 bg-hairline animate-pulse" />
+              <div className="h-7 w-20 bg-hairline animate-pulse" />
+            </div>
+          )}
           <Link
             href="/cart"
             aria-label="Cart"
@@ -160,6 +211,46 @@ export function Header() {
               {link.label}
             </Link>
           ))}
+
+          {/* Auth links in mobile menu */}
+          <div className="mt-3 border-t border-hairline pt-4">
+            {isLoggedIn ? (
+              <>
+                <Link
+                  href="/account"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center gap-2 py-2.5 text-sm font-medium uppercase tracking-[0.14em] text-foreground hover:text-gold transition-colors"
+                >
+                  <User className="h-4 w-4" />
+                  My Account
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => { setMenuOpen(false); void signOut({ callbackUrl: "/" }); }}
+                  className="py-2.5 text-sm font-medium uppercase tracking-[0.14em] text-stone hover:text-gold transition-colors cursor-pointer"
+                >
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <div className="flex flex-col gap-3">
+                <Link
+                  href="/account/login"
+                  onClick={() => setMenuOpen(false)}
+                  className="py-2.5 text-sm font-medium uppercase tracking-[0.14em] text-foreground hover:text-gold transition-colors"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/account/register"
+                  onClick={() => setMenuOpen(false)}
+                  className="inline-block border border-foreground px-5 py-2.5 text-center text-xs font-semibold uppercase tracking-[0.14em] text-foreground transition-all hover:border-gold hover:bg-gold hover:text-white"
+                >
+                  Create Account
+                </Link>
+              </div>
+            )}
+          </div>
         </nav>
       )}
 
