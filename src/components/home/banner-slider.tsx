@@ -74,11 +74,7 @@ export function BannerSlider() {
               discounts across all four collections — for a limited time only.
             </p>
 
-            {/* Gold rule accent */}
-            <div className="mt-6 flex items-center gap-3">
-              <div className="h-[2px] w-10 bg-gold" />
-              <div className="h-[2px] w-3 bg-gold/30" />
-            </div>
+        
 
             {/* CTA */}
             <Link

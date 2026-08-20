@@ -18,7 +18,6 @@ export async function Hero() {
     name: product.name,
     collectionName: product.collection.name,
     caseSize: product.caseSize,
-    priceCents: product.priceCents,
     image: HERO_IMAGES[index % HERO_IMAGES.length],
   }));
 

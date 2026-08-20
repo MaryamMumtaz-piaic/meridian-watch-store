@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ShieldCheck, Truck, BadgeCheck } from "lucide-react";
-import { formatPriceCents } from "@/lib/format";
 
 export type HeroSlide = {
   id: string;
@@ -12,7 +11,6 @@ export type HeroSlide = {
   name: string;
   collectionName: string;
   caseSize: string;
-  priceCents: number;
   image: string;
 };
 
@@ -22,7 +20,6 @@ const FALLBACK_SLIDE: HeroSlide = {
   name: "Time, made to be kept.",
   collectionName: "Maison Temps",
   caseSize: "",
-  priceCents: 0,
   image: "/hero/1.jpeg",
 };
 
@@ -80,7 +77,6 @@ export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
   const items = slides.length > 0 ? slides : [FALLBACK_SLIDE];
   const [active, setActive] = useState(0);
   const reducedMotion = useRef(false);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
@@ -89,13 +85,15 @@ export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
 
   useEffect(() => {
     if (items.length < 2 || paused || reducedMotion.current) return;
-    timerRef.current = setInterval(() => {
-      setActive((current) => (current + 1) % items.length);
+    // `active` intentionally NOT in deps — functional update always reads latest state,
+    // and putting `active` here caused the timer to clear+restart on every slide change,
+    // which made the loop stop when wrapping from the last slide back to the first.
+    const id = setInterval(() => {
+      setActive((prev) => (prev + 1) % items.length);
     }, AUTOPLAY_MS);
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [items.length, paused, active]);
+    return () => clearInterval(id);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items.length, paused]);
 
   const current = items[active];
   const hasProduct = current.slug !== "";
@@ -111,7 +109,7 @@ export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
     >
       <p className="sr-only" aria-live="polite">
         {hasProduct
-          ? `Now showing ${current.name}, ${current.collectionName}, ${formatPriceCents(current.priceCents)}`
+          ? `Now showing ${current.name}, ${current.collectionName}`
           : `${copy.headlineLead} ${copy.headlineAccent}`}
       </p>
       <div className="mx-auto grid w-full max-w-7xl gap-8 px-6 py-6 lg:grid-cols-12 lg:items-center lg:gap-10 lg:px-10 lg:py-0">
@@ -179,33 +177,6 @@ export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
                 </span>
               )}
 
-              {/* Floating product card */}
-              <div
-                key={current.id}
-                className="animate-hero-fade absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4 rounded-2xl bg-background/95 px-4 py-3 shadow-[0_12px_32px_-8px_rgba(28,25,23,0.28)] backdrop-blur transition-transform duration-500 group-hover:-translate-y-1 sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-[80%] sm:rounded-[24px] sm:px-5 sm:py-4"
-              >
-                <div className="min-w-0">
-                  <p className="truncate text-[10px] font-medium uppercase tracking-[0.14em] text-stone sm:text-[11px]">
-                    {current.collectionName}
-                    {current.caseSize ? ` · ${current.caseSize}` : ""}
-                  </p>
-                  {hasProduct ? (
-                    <Link
-                      href={`/watches/${current.slug}`}
-                      className="cursor-pointer truncate rounded-sm font-serif text-base text-foreground outline-none transition-colors hover:text-gold focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 sm:text-xl"
-                    >
-                      {current.name}
-                    </Link>
-                  ) : (
-                    <p className="truncate font-serif text-base text-foreground sm:text-xl">{current.name}</p>
-                  )}
-                </div>
-                {hasProduct && (
-                  <p className="shrink-0 font-mono text-sm text-foreground">
-                    {formatPriceCents(current.priceCents)}
-                  </p>
-                )}
-              </div>
             </div>
           </div>
         </div>

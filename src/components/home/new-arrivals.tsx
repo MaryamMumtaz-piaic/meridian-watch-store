@@ -36,11 +36,7 @@ export async function NewArrivals() {
               Fresh references — across all four collections — just added to the case.
             </p>
 
-            {/* Gold rule accent */}
-            <div className="mt-6 flex items-center gap-3">
-              <div className="h-[3px] w-14 bg-gold" />
-              <div className="h-[3px] w-3 bg-gold/30" />
-            </div>
+          
           </div>
 
           {/* Right — Shop All link (desktop) */}
