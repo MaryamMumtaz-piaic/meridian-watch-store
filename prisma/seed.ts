@@ -71,7 +71,7 @@ const PRODUCTS: {
     featured: true,
     description:
       "A travel-ready dress GMT in two-tone steel — a deep navy dial, a gold-tone bezel, and a bracelet built for the wrist that never quite lands.",
-    images: ["/product/17.jpg"],
+    images: ["/new-product/1.jpg"],
   },
   {
     slug: "aero-command-41",
@@ -84,10 +84,10 @@ const PRODUCTS: {
     waterResistance: "100m",
     priceCents: 520000,
     sku: "MT-AERO-CMD41",
-    featured: false,
+    featured: true,
     description:
       "A 24-hour military dial and a red GMT hand, cased in gold-tone steel — built to be read fast, in low light, from across a room.",
-    images: ["/product/20.png"],
+    images: ["/new-product/2.jpg"],
   },
   // Pulse
   {
@@ -104,7 +104,7 @@ const PRODUCTS: {
     featured: true,
     description:
       "An angular integrated-bracelet sport case with exposed case screws — the boldest silhouette in the Pulse line, finished in gold-tone steel.",
-    images: ["/product/21.jpg"],
+    images: ["/new-product/3.jpg"],
   },
   {
     slug: "pulse-chronograph-43",
@@ -120,7 +120,7 @@ const PRODUCTS: {
     featured: true,
     description:
       "Three registers, a 24-hour sub-dial, and a lacquer-red chronograph hand — Pulse Chronograph is built for anyone who actually times things.",
-    images: ["/product/23.jpg"],
+    images: ["/new-product/4.jpg"],
   },
   {
     slug: "pulse-hybrid-44",
@@ -153,7 +153,7 @@ const PRODUCTS: {
     featured: true,
     description:
       "A navy sunray dial under a gold-tone bezel — the watch we'd put on before a meeting that actually matters.",
-    images: ["/product/12.jpg"],
+    images: ["/new-product/5.jpg"],
   },
   {
     slug: "studio-reserve-39",
@@ -185,7 +185,7 @@ const PRODUCTS: {
     featured: true,
     description:
       "Diamond-set hour markers, a day-date window, and a full gold-tone bracelet — the most formal watch in the Studio line.",
-    images: ["/product/15.jpg"],
+    images: ["/new-product/6.jpg"],
   },
   {
     slug: "studio-facet-40",
@@ -234,7 +234,7 @@ const PRODUCTS: {
     featured: true,
     description:
       "An all-black case with diamond-set hour markers — day-date function, a full bracelet, and a finish that shrugs off scrapes.",
-    images: ["/product/11.png"],
+    images: ["/new-product/7.jpg"],
   },
   {
     slug: "summit-expedition-43",
@@ -250,7 +250,7 @@ const PRODUCTS: {
     featured: true,
     description:
       "A cushion case built for terrain, not the office — a striped black dial, a red running-seconds hand, and a leather strap that's meant to scuff.",
-    images: ["/product/14.jpg", "/product/16.png"],
+    images: ["/new-product/8.jpg"],
   },
   {
     slug: "summit-depth-300",
