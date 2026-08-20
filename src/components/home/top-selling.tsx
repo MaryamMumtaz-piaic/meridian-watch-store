@@ -99,11 +99,6 @@ export function TopSelling() {
               generation of collectors. Each one carries a story worth wearing.
             </p>
 
-            {/* Gold rule */}
-            <div className="mt-6 flex items-center gap-3">
-              <div className="h-[3px] w-14 bg-gold" />
-              <div className="h-[3px] w-3 bg-gold/30" />
-            </div>
           </div>
 
           {/* Right — desktop CTA */}

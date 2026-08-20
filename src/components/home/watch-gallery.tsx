@@ -119,7 +119,7 @@ export function WatchGallery() {
 
       {/* ── Hint ── */}
       <div className="mt-10 text-center">
-        <p className="text-[10px] uppercase tracking-[0.24em] text-stone/30">
+        <p className="text-[10px] uppercase tracking-[0.24em] text-black/50">
           Hover to pause &nbsp;·&nbsp; 24 references &nbsp;·&nbsp; Maison Temps
         </p>
       </div>
