@@ -1,10 +1,9 @@
-import { PrismaClient } from "../src/generated/prisma/client";
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
+import dotenv from "dotenv";
+dotenv.config({ override: true });
 
-const adapter = new PrismaBetterSqlite3({
-  url: process.env.DATABASE_URL ?? "file:./dev.db",
-});
-const prisma = new PrismaClient({ adapter });
+import { PrismaClient } from "../src/generated/prisma/client";
+import pg from "pg";
+import { PrismaPg } from "@prisma/adapter-pg";
 
 const COLLECTIONS = [
   {
@@ -271,6 +270,13 @@ const PRODUCTS: {
 ];
 
 async function main() {
+  const pool = new pg.Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false },
+  });
+  const adapter = new PrismaPg(pool);
+  const prisma = new PrismaClient({ adapter });
+
   console.log("Seeding collections...");
   const collectionIds = new Map<string, string>();
 
@@ -336,13 +342,11 @@ async function main() {
   });
 
   console.log(`Seeded ${COLLECTIONS.length} collections and ${PRODUCTS.length} products (removed ${removed.count} old products).`);
+  await prisma.$disconnect();
+  await pool.end();
 }
 
-main()
-  .catch((error) => {
-    console.error(error);
-    process.exitCode = 1;
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
