@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState, useSyncExternalStore, type FormEvent } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { Menu, X, Search, Heart, User, ShoppingBag } from "lucide-react";
 import { useSession, signOut } from "next-auth/react";
 import { cn } from "@/lib/utils";
 import { useCartCount } from "@/lib/store/cart";
 import { useWishlistCount } from "@/lib/store/wishlist";
 import { WatchMark } from "@/components/home/watch-mark";
+import { SearchOverlay } from "./search-overlay";
 
 const emptySubscribe = () => () => {};
 
@@ -39,12 +39,10 @@ function IconBadge({ count }: { count: number }) {
 }
 
 export function Header() {
-  const router = useRouter();
   const { data: session, status } = useSession();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [query, setQuery] = useState("");
   const mounted = useIsMounted();
 
   const isLoggedIn = status === "authenticated" && !!session;
@@ -65,14 +63,6 @@ export function Header() {
       document.body.style.overflow = "";
     };
   }, [menuOpen, searchOpen]);
-
-  function handleSearchSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const trimmed = query.trim();
-    if (!trimmed) return;
-    setSearchOpen(false);
-    router.push(`/search?q=${encodeURIComponent(trimmed)}`);
-  }
 
   return (
     <header
@@ -118,6 +108,7 @@ export function Header() {
             type="button"
             aria-label={searchOpen ? "Close search" : "Search"}
             aria-expanded={searchOpen}
+            onMouseDown={(e) => e.preventDefault()}
             onClick={() => {
               setSearchOpen((v) => !v);
               setMenuOpen(false);
@@ -254,30 +245,7 @@ export function Header() {
         </nav>
       )}
 
-      {searchOpen && (
-        <div className="border-t border-border bg-background px-6 py-6 text-foreground lg:px-10">
-          <form
-            onSubmit={handleSearchSubmit}
-            className="mx-auto flex max-w-2xl items-center gap-4"
-          >
-            <Search className="h-5 w-5 shrink-0 text-stone" />
-            <input
-              type="search"
-              autoFocus
-              placeholder="Search watches, collections…"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              className="w-full border-b border-hairline bg-transparent py-2 font-serif text-lg placeholder:text-stone/60 focus:border-gold focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="shrink-0 cursor-pointer text-xs font-medium uppercase tracking-[0.14em] text-gold transition-colors duration-300 hover:text-gold-bright"
-            >
-              Search
-            </button>
-          </form>
-        </div>
-      )}
+      <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 }
