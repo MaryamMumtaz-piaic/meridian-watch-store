@@ -19,11 +19,9 @@ const DURATION = 4500;
 export function BannerSlider() {
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [progressKey, setProgressKey] = useState(0);
 
   const goTo = useCallback((index: number) => {
     setCurrent(index);
-    setProgressKey((k) => k + 1);
   }, []);
 
   const prev = useCallback(
@@ -155,15 +153,6 @@ export function BannerSlider() {
                     }`}
                   />
                 ))}
-              </div>
-              <div className="h-px w-full bg-hairline">
-                {!paused && (
-                  <div
-                    key={`progress-${progressKey}`}
-                    className="h-full origin-left bg-gold"
-                    style={{ animation: `banner-progress ${DURATION}ms linear forwards` }}
-                  />
-                )}
               </div>
             </div>
           </div>

@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, Cormorant_Garamond, JetBrains_Mono } from "next/font/google";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { CookieBanner } from "@/components/layout/cookie-banner";
+import { ConditionalChrome } from "@/components/layout/conditional-chrome";
 import { Providers } from "@/components/layout/providers";
 import "./globals.css";
 
@@ -41,10 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <Providers>
-          <Header />
-          <main className="flex-1 pt-20">{children}</main>
-          <Footer />
-          <CookieBanner />
+          <ConditionalChrome>{children}</ConditionalChrome>
         </Providers>
       </body>
     </html>
