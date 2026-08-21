@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -12,46 +13,6 @@ type LoginForm = {
   rememberMe: boolean;
 };
 
-const AVATAR_COLORS = ["#8B5E6A", "#B07A8A", "#D4A0AE"] as const;
-const AVATAR_INITIALS = ["A", "E", "M"] as const;
-
-function WatchFace() {
-  const markers = Array.from({ length: 12 }, (_, i) => {
-    const angle = ((i * 30 - 90) * Math.PI) / 180;
-    const major = i % 3 === 0;
-    return {
-      x1: 80 + (major ? 50 : 54) * Math.cos(angle),
-      y1: 80 + (major ? 50 : 54) * Math.sin(angle),
-      x2: 80 + 59 * Math.cos(angle),
-      y2: 80 + 59 * Math.sin(angle),
-      major,
-    };
-  });
-
-  return (
-    <svg viewBox="0 0 160 160" className="h-36 w-36" aria-hidden="true">
-      <circle cx="80" cy="80" r="70" fill="none" stroke="#e8c4ce" strokeWidth="1" />
-      <circle cx="80" cy="80" r="62" fill="rgba(255,255,255,0.45)" stroke="#e8c4ce" strokeWidth="0.5" />
-      {markers.map((m, i) => (
-        <line
-          key={i}
-          x1={m.x1} y1={m.y1} x2={m.x2} y2={m.y2}
-          stroke="#c9a0b0"
-          strokeWidth={m.major ? "2" : "1"}
-          strokeLinecap="round"
-        />
-      ))}
-      {/* Hour hand ~10 */}
-      <line x1="80" y1="80" x2="55" y2="52" stroke="#b07880" strokeWidth="2.5" strokeLinecap="round" />
-      {/* Minute hand ~2 */}
-      <line x1="80" y1="80" x2="104" y2="44" stroke="#b07880" strokeWidth="1.5" strokeLinecap="round" />
-      {/* Second hand */}
-      <line x1="80" y1="87" x2="80" y2="44" stroke="#d4899a" strokeWidth="1" strokeLinecap="round" />
-      <circle cx="80" cy="80" r="3.5" fill="#b07880" />
-      <circle cx="80" cy="80" r="1.5" fill="white" />
-    </svg>
-  );
-}
 
 function EyeIcon() {
   return (
@@ -133,21 +94,21 @@ export default function LoginPage() {
         <div className="flex">
           {/* ── Left branded panel ── */}
           <div
-            className="relative hidden flex-col justify-between overflow-hidden p-10 md:flex md:w-[42%]"
-            style={{ background: "#fff0f4" }}
+            className="relative hidden flex-col overflow-hidden md:flex md:w-[42%]"
+            style={{ background: "#ffffff" }}
           >
             {/* Decorative blobs */}
             <div
               className="pointer-events-none absolute -right-14 -top-14 h-52 w-52 rounded-full"
-              style={{ background: "rgba(252,228,236,0.45)" }}
+              style={{ background: "rgba(201,162,39,0.18)" }}
             />
             <div
-              className="pointer-events-none absolute -bottom-16 -left-8 h-60 w-60 rounded-full"
-              style={{ background: "rgba(252,228,236,0.28)" }}
+              className="pointer-events-none absolute -bottom-10 -left-8 h-60 w-60 rounded-full"
+              style={{ background: "rgba(161,98,7,0.12)" }}
             />
 
             {/* Brand copy */}
-            <div className="relative z-10">
+            <div className="relative z-10 p-10 pb-4">
               <span
                 className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em]"
                 style={{ color: "#b07880" }}
@@ -166,36 +127,17 @@ export default function LoginPage() {
               </p>
             </div>
 
-            {/* Watch illustration */}
-            <div className="relative z-10 flex justify-center">
-              <WatchFace />
-            </div>
-
-            {/* Social proof */}
-            <div className="relative z-10">
-              <div
-                className="rounded-xl border p-4"
-                style={{ background: "rgba(255,255,255,0.62)", borderColor: "#f0d5dc" }}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="flex -space-x-2">
-                    {AVATAR_COLORS.map((color, i) => (
-                      <div
-                        key={i}
-                        className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-white text-[10px] font-semibold text-white"
-                        style={{ background: color }}
-                        aria-hidden="true"
-                      >
-                        {AVATAR_INITIALS[i]}
-                      </div>
-                    ))}
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold" style={{ color: "#2d1a20" }}>12,000+ Members</p>
-                    <p className="text-[11px]" style={{ color: "#8a6070" }}>Join our curated community</p>
-                  </div>
-                </div>
-              </div>
+            {/* Brand illustration */}
+            <div className="relative z-10 mt-auto">
+              <Image
+                src="/login-designs.png"
+                alt="Maison Temps watch collection"
+                width={700}
+                height={480}
+                className="w-full object-contain"
+                style={{ mixBlendMode: "multiply" }}
+                priority
+              />
             </div>
           </div>
 
