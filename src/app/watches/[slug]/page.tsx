@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { Truck, Award, RotateCcw } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { formatPriceCents } from "@/lib/format";
 import { ImageGallery } from "./_components/image-gallery";
@@ -131,14 +132,14 @@ export default async function WatchPage({ params }: Props) {
               />
 
               {/* Trust badges */}
-              <div className="mt-2 grid grid-cols-3 gap-3 border border-hairline p-4">
+              <div className="mt-2 grid grid-cols-3 gap-px border border-hairline bg-hairline">
                 {[
-                  { icon: "◈", label: "Free Insured Shipping" },
-                  { icon: "◇", label: "5-Year Warranty" },
-                  { icon: "◉", label: "30-Day Returns" },
+                  { icon: Truck, label: "Free Insured Shipping" },
+                  { icon: Award, label: "5-Year Warranty" },
+                  { icon: RotateCcw, label: "30-Day Returns" },
                 ].map((badge) => (
-                  <div key={badge.label} className="flex flex-col items-center gap-1.5 text-center">
-                    <span className="text-lg text-gold/70">{badge.icon}</span>
+                  <div key={badge.label} className="flex flex-col items-center gap-2 bg-background px-3 py-4 text-center">
+                    <badge.icon className="h-4 w-4 text-gold" strokeWidth={1.5} />
                     <span className="text-[10px] font-medium leading-tight text-stone">{badge.label}</span>
                   </div>
                 ))}
