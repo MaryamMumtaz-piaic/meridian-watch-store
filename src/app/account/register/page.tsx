@@ -82,12 +82,23 @@ export default function RegisterPage() {
       });
       if (result.error) {
         setError(result.error);
-      } else {
+        setLoading(false);
+        return;
+      }
+      // Auto sign-in immediately after registration
+      const signInResult = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      });
+      if (signInResult?.error) {
+        // Account created but session failed — send to login
         router.push("/account/login?registered=1");
+      } else {
+        router.push("/");
       }
     } catch {
       setError("Something went wrong. Please try again.");
-    } finally {
       setLoading(false);
     }
   }
