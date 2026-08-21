@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Minus, Plus, ShoppingBag, Heart, Check } from "lucide-react";
 import { useCartStore } from "@/lib/store/cart";
 import { useWishlistStore, type WishlistItem } from "@/lib/store/wishlist";
+import { useToast } from "@/lib/store/toast";
+import { formatPriceCents } from "@/lib/format";
 
 type Product = {
   productId: string;
@@ -18,6 +20,7 @@ export function ProductActions({ product }: { product: Product }) {
   const [added, setAdded] = useState(false);
 
   const addItem = useCartStore((s) => s.addItem);
+  const addToast = useToast();
   const isSaved = useWishlistStore((s) => s.isSaved(product.productId));
   const toggle = useWishlistStore((s) => s.toggle);
 
@@ -33,6 +36,13 @@ export function ProductActions({ product }: { product: Product }) {
     addItem(product, quantity);
     setAdded(true);
     setTimeout(() => setAdded(false), 1800);
+
+    addToast({
+      type: "cart",
+      title: product.name,
+      price: `${quantity > 1 ? `${quantity} × ` : ""}${formatPriceCents(product.priceCents)}`,
+      image: product.image,
+    });
   }
 
   return (

@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { ShoppingBag, Check } from "lucide-react";
 import { useCartStore } from "@/lib/store/cart";
+import { useToast } from "@/lib/store/toast";
+import { formatPriceCents } from "@/lib/format";
 
 export function AddToCartButton({
   product,
@@ -10,6 +12,7 @@ export function AddToCartButton({
   product: { productId: string; slug: string; name: string; priceCents: number; image: string };
 }) {
   const addItem = useCartStore((state) => state.addItem);
+  const addToast = useToast();
   const [added, setAdded] = useState(false);
 
   function handleClick(event: React.MouseEvent) {
@@ -18,6 +21,13 @@ export function AddToCartButton({
     addItem(product);
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
+
+    addToast({
+      type: "cart",
+      title: product.name,
+      price: formatPriceCents(product.priceCents),
+      image: product.image,
+    });
   }
 
   return (

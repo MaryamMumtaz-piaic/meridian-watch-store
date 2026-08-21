@@ -6,12 +6,14 @@ import { Heart, ArrowRight, ShoppingBag } from "lucide-react";
 import { useWishlistStore } from "@/lib/store/wishlist";
 import { useCartStore } from "@/lib/store/cart";
 import { formatPriceCents } from "@/lib/format";
+import { useToast } from "@/lib/store/toast";
 import { useState } from "react";
 
 export default function WishlistPage() {
   const items = useWishlistStore((s) => s.items);
   const toggle = useWishlistStore((s) => s.toggle);
   const addItem = useCartStore((s) => s.addItem);
+  const addToast = useToast();
   const [addedIds, setAddedIds] = useState<Set<string>>(new Set());
 
   function handleAddToCart(item: (typeof items)[number]) {
@@ -30,6 +32,13 @@ export default function WishlistPage() {
         return next;
       });
     }, 1500);
+
+    addToast({
+      type: "cart",
+      title: item.name,
+      price: formatPriceCents(item.priceCents),
+      image: item.image,
+    });
   }
 
   if (items.length === 0) {

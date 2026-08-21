@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { Header } from "./header";
 import { Footer } from "./footer";
 import { CookieBanner } from "./cookie-banner";
+import { ToastContainer } from "@/components/ui/toast-container";
 
 const AUTH_ROUTES = ["/account/login", "/account/register"];
 
@@ -17,6 +18,7 @@ export function ConditionalChrome({ children }: { children: React.ReactNode }) {
       <main className={isAuth ? "flex-1" : "flex-1 pt-20"}>{children}</main>
       {!isAuth && <Footer />}
       {!isAuth && <CookieBanner />}
+      <ToastContainer />
     </>
   );
 }
