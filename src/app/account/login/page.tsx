@@ -86,12 +86,12 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-[82vh] items-center justify-center px-4 py-12">
+    <div className="flex h-dvh items-center justify-center overflow-hidden px-4 py-3">
       <div
-        className="w-full max-w-4xl overflow-hidden border border-hairline bg-white"
-        style={{ borderRadius: "1.25rem", boxShadow: "0 4px 32px rgba(28,25,23,0.07), 0 1px 4px rgba(28,25,23,0.04)" }}
+        className="flex w-full max-w-4xl overflow-hidden border border-hairline bg-white"
+        style={{ borderRadius: "1.25rem", boxShadow: "0 4px 32px rgba(28,25,23,0.07), 0 1px 4px rgba(28,25,23,0.04)", maxHeight: "calc(100dvh - 1.5rem)" }}
       >
-        <div className="flex">
+        <div className="flex h-full w-full">
           {/* ── Left branded panel ── */}
           <div
             className="relative hidden flex-col overflow-hidden md:flex md:w-[42%]"
@@ -142,7 +142,7 @@ export default function LoginPage() {
           </div>
 
           {/* ── Right form panel ── */}
-          <div className="flex flex-1 flex-col justify-center px-8 py-10 md:px-12">
+          <div className="flex flex-1 flex-col justify-center overflow-y-auto px-8 py-6 md:px-12">
             {/* Tab switcher */}
             <div className="mb-8 flex border-b border-hairline">
               <span

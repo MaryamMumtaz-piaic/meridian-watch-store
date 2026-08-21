@@ -77,12 +77,12 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="flex min-h-[82vh] items-center justify-center px-4 py-12">
+    <div className="flex h-dvh items-center justify-center overflow-hidden px-4 py-3">
       <div
-        className="w-full max-w-4xl overflow-hidden border border-hairline bg-white"
-        style={{ borderRadius: "1.25rem", boxShadow: "0 4px 32px rgba(28,25,23,0.07), 0 1px 4px rgba(28,25,23,0.04)" }}
+        className="flex w-full max-w-4xl overflow-hidden border border-hairline bg-white"
+        style={{ borderRadius: "1.25rem", boxShadow: "0 4px 32px rgba(28,25,23,0.07), 0 1px 4px rgba(28,25,23,0.04)", maxHeight: "calc(100dvh - 1.5rem)" }}
       >
-        <div className="flex">
+        <div className="flex h-full w-full">
           {/* ── Left branded panel ── */}
           <div
             className="relative hidden flex-col overflow-hidden md:flex md:w-[42%]"
@@ -98,7 +98,7 @@ export default function RegisterPage() {
             />
 
             {/* Brand copy */}
-            <div className="relative z-10 p-10 pb-4">
+            <div className="relative z-10 p-8 pb-2">
               <span
                 className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em]"
                 style={{ color: "#b07880" }}
@@ -132,9 +132,9 @@ export default function RegisterPage() {
           </div>
 
           {/* ── Right form panel ── */}
-          <div className="flex flex-1 flex-col justify-center px-8 py-10 md:px-12">
+          <div className="flex flex-1 flex-col justify-center overflow-y-auto px-8 py-5 md:px-12">
             {/* Tab switcher */}
-            <div className="mb-6 flex border-b border-hairline">
+            <div className="mb-4 flex border-b border-hairline">
               <Link
                 href="/account/login"
                 className="border-b-2 border-transparent pb-3 pr-6 text-sm font-medium text-stone transition-colors hover:text-gold focus-visible:text-gold focus-visible:outline-none"
@@ -149,7 +149,7 @@ export default function RegisterPage() {
               </span>
             </div>
 
-            <div className="mb-5">
+            <div className="mb-4">
               <h1 className="font-serif text-2xl text-foreground">Create account</h1>
               <p className="mt-1 text-sm text-stone">Join Maison Temps — free, always.</p>
             </div>
@@ -163,7 +163,7 @@ export default function RegisterPage() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-3.5">
+            <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-3">
               {/* Name row */}
               <div className="grid grid-cols-2 gap-3">
                 <div>
@@ -341,7 +341,7 @@ export default function RegisterPage() {
             </form>
 
             {/* Divider */}
-            <div className="mt-5 flex items-center gap-4">
+            <div className="mt-4 flex items-center gap-4">
               <div className="h-px flex-1 bg-hairline" />
               <span className="text-xs text-stone/60">or sign up with</span>
               <div className="h-px flex-1 bg-hairline" />
