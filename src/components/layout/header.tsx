@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState, useSyncExternalStore } from "react";
-import { Menu, X, Search, Heart, User, ShoppingBag, ChevronDown, ArrowRight } from "lucide-react";
+import { useEffect, useState, useSyncExternalStore, useRef } from "react";
+import { Menu, X, Search, Heart, User, ShoppingBag, ChevronDown, ArrowRight, LayoutDashboard, Package, MapPin, LogOut } from "lucide-react";
 import { useSession, signOut } from "next-auth/react";
 import { cn } from "@/lib/utils";
 import { useCartCount } from "@/lib/store/cart";
@@ -49,6 +49,8 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const profileRef = useRef<HTMLDivElement>(null);
   const mounted = useIsMounted();
 
   const isLoggedIn = status === "authenticated" && !!session;
@@ -69,6 +71,16 @@ export function Header() {
       document.body.style.overflow = "";
     };
   }, [menuOpen, searchOpen]);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (profileRef.current && !profileRef.current.contains(e.target as Node)) {
+        setProfileOpen(false);
+      }
+    }
+    if (profileOpen) document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [profileOpen]);
 
   return (
     <header
@@ -192,37 +204,116 @@ export function Header() {
             <Heart className="h-[18px] w-[18px]" />
             {mounted && <IconBadge count={wishlistCount} />}
           </Link>
-          {/* Auth: show Login+Register when logged out, User icon when logged in */}
+          <Link
+            href="/cart"
+            aria-label="Cart"
+            className="relative cursor-pointer text-foreground transition-all duration-300 hover:scale-110 hover:text-gold"
+          >
+            <ShoppingBag className="h-[18px] w-[18px]" />
+            {mounted && <IconBadge count={cartCount} />}
+          </Link>
+          {/* Auth */}
           {mounted && isLoggedIn ? (
-            <div className="relative group">
-              <Link
-                href="/account"
+            <div ref={profileRef} className="relative">
+              {/* Round avatar button */}
+              <button
+                type="button"
                 aria-label="My Account"
-                className="cursor-pointer text-foreground transition-all duration-300 hover:scale-110 hover:text-gold"
+                aria-expanded={profileOpen}
+                onClick={() => setProfileOpen((v) => !v)}
+                className="group relative flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-ink text-white transition-all duration-200 hover:ring-2 hover:ring-gold hover:ring-offset-1"
               >
-                <User className="h-[18px] w-[18px]" />
-              </Link>
-              {/* Dropdown on hover */}
-              <div className="pointer-events-none absolute right-0 top-full z-50 w-44 translate-y-1 border border-hairline bg-background opacity-0 shadow-lg transition-all duration-200 group-hover:pointer-events-auto group-hover:opacity-100 group-hover:translate-y-0">
-                <div className="px-4 py-3 border-b border-hairline">
-                  <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-stone truncate">
-                    {session.user?.name ?? session.user?.email ?? "My Account"}
-                  </p>
+                {session.user?.image ? (
+                  <Image
+                    src={session.user.image}
+                    alt={session.user.name ?? "Profile"}
+                    fill
+                    className="rounded-full object-cover"
+                  />
+                ) : (
+                  <span className="font-sans text-[11px] font-bold leading-none text-white">
+                    {(session.user?.name ?? session.user?.email ?? "U")
+                      .split(" ")
+                      .map((w: string) => w[0])
+                      .join("")
+                      .slice(0, 2)
+                      .toUpperCase()}
+                  </span>
+                )}
+                {/* Gold ring when open */}
+                {profileOpen && (
+                  <span className="absolute inset-0 rounded-full ring-2 ring-gold ring-offset-1" />
+                )}
+              </button>
+
+              {/* Dropdown panel */}
+              {profileOpen && (
+                <div className="absolute right-0 top-[calc(100%+10px)] z-50 w-60 overflow-hidden border border-hairline bg-background shadow-[0_8px_32px_-4px_rgba(0,0,0,0.16)]">
+                  {/* User info header */}
+                  <div className="flex items-center gap-3 border-b border-hairline bg-[#faf8f4] px-4 py-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ink text-white">
+                      <span className="font-sans text-[13px] font-bold leading-none">
+                        {(session.user?.name ?? session.user?.email ?? "U")
+                          .split(" ")
+                          .map((w: string) => w[0])
+                          .join("")
+                          .slice(0, 2)
+                          .toUpperCase()}
+                      </span>
+                    </div>
+                    <div className="min-w-0">
+                      {session.user?.name && (
+                        <p className="truncate text-[13px] font-semibold text-ink">
+                          {session.user.name}
+                        </p>
+                      )}
+                      <p className="truncate text-[11px] text-stone">
+                        {session.user?.email ?? ""}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Menu items */}
+                  <nav className="py-1.5">
+                    <Link
+                      href="/account"
+                      onClick={() => setProfileOpen(false)}
+                      className="flex items-center gap-3 px-4 py-2.5 text-[12px] font-medium text-foreground/80 transition-colors hover:bg-secondary hover:text-gold"
+                    >
+                      <LayoutDashboard className="h-3.5 w-3.5 shrink-0" strokeWidth={1.8} />
+                      Dashboard
+                    </Link>
+                    <Link
+                      href="/account/orders"
+                      onClick={() => setProfileOpen(false)}
+                      className="flex items-center gap-3 px-4 py-2.5 text-[12px] font-medium text-foreground/80 transition-colors hover:bg-secondary hover:text-gold"
+                    >
+                      <Package className="h-3.5 w-3.5 shrink-0" strokeWidth={1.8} />
+                      My Orders
+                    </Link>
+                    <Link
+                      href="/account/addresses"
+                      onClick={() => setProfileOpen(false)}
+                      className="flex items-center gap-3 px-4 py-2.5 text-[12px] font-medium text-foreground/80 transition-colors hover:bg-secondary hover:text-gold"
+                    >
+                      <MapPin className="h-3.5 w-3.5 shrink-0" strokeWidth={1.8} />
+                      Addresses
+                    </Link>
+                  </nav>
+
+                  {/* Sign Out */}
+                  <div className="border-t border-hairline py-1.5">
+                    <button
+                      type="button"
+                      onClick={() => { setProfileOpen(false); void signOut({ callbackUrl: "/" }); }}
+                      className="flex w-full cursor-pointer items-center gap-3 px-4 py-2.5 text-[12px] font-medium text-stone transition-colors hover:bg-secondary hover:text-gold"
+                    >
+                      <LogOut className="h-3.5 w-3.5 shrink-0" strokeWidth={1.8} />
+                      Sign Out
+                    </button>
+                  </div>
                 </div>
-                <Link href="/account" className="flex items-center px-4 py-2.5 text-xs text-foreground/80 hover:text-gold hover:bg-secondary transition-colors">
-                  Dashboard
-                </Link>
-                <Link href="/account/orders" className="flex items-center px-4 py-2.5 text-xs text-foreground/80 hover:text-gold hover:bg-secondary transition-colors">
-                  My Orders
-                </Link>
-                <button
-                  type="button"
-                  onClick={() => signOut({ callbackUrl: "/" })}
-                  className="flex w-full items-center px-4 py-2.5 text-xs text-foreground/80 hover:text-gold hover:bg-secondary transition-colors border-t border-hairline cursor-pointer"
-                >
-                  Sign Out
-                </button>
-              </div>
+              )}
             </div>
           ) : mounted && !isLoggedIn ? (
             <div className="hidden items-center gap-3 lg:flex">
@@ -240,20 +331,11 @@ export function Header() {
               </Link>
             </div>
           ) : (
-            /* Loading state — reserve space to avoid layout shift */
             <div className="hidden lg:flex items-center gap-3">
               <div className="h-4 w-12 bg-hairline animate-pulse" />
               <div className="h-7 w-20 bg-hairline animate-pulse" />
             </div>
           )}
-          <Link
-            href="/cart"
-            aria-label="Cart"
-            className="relative cursor-pointer text-foreground transition-all duration-300 hover:scale-110 hover:text-gold"
-          >
-            <ShoppingBag className="h-[18px] w-[18px]" />
-            {mounted && <IconBadge count={cartCount} />}
-          </Link>
         </div>
       </div>
 
