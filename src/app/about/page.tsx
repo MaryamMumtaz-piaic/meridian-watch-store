@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Crosshair, BookOpen, Zap, Clock, Package, Timer } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Our Story — Maison Temps",
+  title: "Our Story",
   description:
     "Maison Temps was founded on a singular conviction: that a watch is not a product — it is a promise, made in metal and movement, to endure.",
 };

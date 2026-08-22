@@ -1,8 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { formatPriceCents } from "@/lib/format";
+
+export const metadata: Metadata = { title: "Order Details" };
 
 function StatusBadge({ status }: { status: string }) {
   const colors: Record<string, string> = {

@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!collection) return { title: "Collection Not Found" };
   return {
     title: collection.name,
-    description: collection.description,
+    description: collection.description ?? undefined,
   };
 }
 

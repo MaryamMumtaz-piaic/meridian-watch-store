@@ -25,10 +25,18 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: {
     default: "Maison Temps — Fine Mechanical Watches",
-    template: "%s — Maison Temps",
+    template: "%s | Maison Temps",
   },
   description:
     "Maison Temps crafts fine mechanical watches — heritage movements, considered materials, made to be worn for a lifetime.",
+  icons: {
+    icon: [
+      {
+        url: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌚</text></svg>",
+        type: "image/svg+xml",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

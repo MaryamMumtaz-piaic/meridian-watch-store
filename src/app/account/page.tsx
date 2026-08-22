@@ -1,5 +1,8 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { formatPriceCents } from "@/lib/format";
+
+export const metadata: Metadata = { title: "My Account" };
 
 // TODO: Replace with real session from NextAuth
 const DEMO_USER = {

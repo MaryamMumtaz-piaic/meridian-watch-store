@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { formatPriceCents } from "@/lib/format";
 
 export const metadata: Metadata = {
-  title: "Search",
+  title: "Search Watches",
 };
 
 export default async function SearchPage({

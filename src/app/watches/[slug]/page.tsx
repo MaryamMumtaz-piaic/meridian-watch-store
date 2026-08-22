@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = await prisma.product.findUnique({ where: { slug }, include: { collection: true } });
   if (!product) return { title: "Watch Not Found" };
-  return { title: `${product.name} — Maison Temps`, description: product.description };
+  return { title: product.name, description: product.description ?? undefined };
 }
 
 export async function generateStaticParams() {
