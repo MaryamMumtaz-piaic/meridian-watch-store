@@ -341,7 +341,7 @@ export default async function WatchPage({ params }: Props) {
 
             {/* Product image — decorative */}
             <div
-              className="relative overflow-hidden rounded-sm bg-[#f5f2ed] shadow-sm"
+              className="relative overflow-hidden bg-white"
               style={{ aspectRatio: "3/4" }}
             >
               <Image

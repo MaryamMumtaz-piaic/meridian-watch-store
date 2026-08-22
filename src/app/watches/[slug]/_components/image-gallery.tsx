@@ -22,7 +22,7 @@ export function ImageGallery({ images, name }: { images: string[]; name: string 
 
       {/* ── Main image ── */}
       <div
-        className="group relative w-full overflow-hidden rounded-sm bg-[#f5f2ed] shadow-[0_1px_8px_rgba(0,0,0,0.07)]"
+        className="group relative w-full overflow-hidden rounded-2xl bg-[#faf8f4]"
         style={{ aspectRatio: "1/1" }}
       >
         <Image
@@ -85,7 +85,7 @@ export function ImageGallery({ images, name }: { images: string[]; name: string 
               onClick={() => setSelected(i)}
               aria-label={`View image ${i + 1}`}
               aria-pressed={i === selected}
-              className={`relative h-16 w-16 shrink-0 cursor-pointer overflow-hidden rounded-sm bg-[#f5f2ed] transition-all duration-150 ${
+              className={`relative h-16 w-16 shrink-0 cursor-pointer overflow-hidden rounded-xl bg-[#faf8f4] transition-all duration-150 ${
                 i === selected
                   ? "ring-2 ring-gold ring-offset-1"
                   : "opacity-50 hover:opacity-90 hover:ring-1 hover:ring-hairline"
