@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState, useSyncExternalStore } from "react";
-import { Menu, X, Search, Heart, User, ShoppingBag } from "lucide-react";
+import { Menu, X, Search, Heart, User, ShoppingBag, ChevronDown, ArrowRight } from "lucide-react";
 import { useSession, signOut } from "next-auth/react";
 import { cn } from "@/lib/utils";
 import { useCartCount } from "@/lib/store/cart";
@@ -22,11 +23,16 @@ function useIsMounted() {
 }
 
 const NAV_LINKS = [
-  { href: "/collections", label: "Collections" },
-  { href: "/watches", label: "Watches" },
-  { href: "/craftsmanship", label: "Craftsmanship" },
-  { href: "/journal", label: "Journal" },
-  { href: "/boutiques", label: "Boutiques" },
+  { href: "/watches", label: "All Watches" },
+  { href: "/watches?sort=new", label: "New Arrivals" },
+  { href: "/order-tracking", label: "Track Order" },
+];
+
+const COLLECTIONS_DROPDOWN = [
+  { slug: "aero", label: "Aero", tag: "Aviation-inspired", image: "/product/17.jpg" },
+  { slug: "pulse", label: "Pulse", tag: "Sport & Chronograph", image: "/product/21.jpg" },
+  { slug: "studio", label: "Studio", tag: "Dress & Formal", image: "/product/12.jpg" },
+  { slug: "summit", label: "Summit", tag: "Outdoor & Field", image: "/product/11.png" },
 ];
 
 function IconBadge({ count }: { count: number }) {
@@ -91,6 +97,67 @@ export function Header() {
         </div>
 
         <nav className="hidden items-center gap-7 justify-self-center lg:flex">
+          {/* Collections with mega-dropdown */}
+          <div className="group relative">
+            <Link
+              href="/collections"
+              className="flex items-center gap-1 py-1 text-xs font-medium uppercase tracking-[0.14em] text-foreground/80 transition-colors duration-300 hover:text-gold"
+            >
+              Collections
+              <ChevronDown className="h-3 w-3 transition-transform duration-200 group-hover:rotate-180" />
+            </Link>
+
+            {/* Dropdown panel */}
+            <div className="pointer-events-none absolute left-1/2 top-full z-50 mt-3 w-[560px] -translate-x-1/2 translate-y-2 border border-hairline bg-background opacity-0 shadow-[0_8px_32px_-4px_rgba(0,0,0,0.14)] transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
+              {/* Arrow tip */}
+              <div className="absolute -top-[5px] left-1/2 h-2.5 w-2.5 -translate-x-1/2 rotate-45 border-l border-t border-hairline bg-background" />
+
+              <div className="p-5">
+                <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.24em] text-stone">
+                  Our Collections
+                </p>
+                <div className="grid grid-cols-4 gap-3">
+                  {COLLECTIONS_DROPDOWN.map((col) => (
+                    <Link
+                      key={col.slug}
+                      href={`/collections/${col.slug}`}
+                      className="group/col flex flex-col"
+                    >
+                      <div className="relative aspect-[3/4] w-full overflow-hidden bg-secondary">
+                        <Image
+                          src={col.image}
+                          alt={col.label}
+                          fill
+                          sizes="130px"
+                          className="object-cover transition-transform duration-500 ease-out group-hover/col:scale-[1.06]"
+                        />
+                        <div className="absolute inset-0 bg-ink/[0.05] transition-opacity duration-300 group-hover/col:bg-ink/[0.12]" />
+                      </div>
+                      <div className="mt-2.5">
+                        <p className="text-[13px] font-bold text-ink transition-colors duration-200 group-hover/col:text-gold">
+                          {col.label}
+                        </p>
+                        <p className="mt-0.5 text-[10px] text-stone/70">{col.tag}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+
+                <div className="mt-5 flex items-center justify-between border-t border-hairline pt-4">
+                  <p className="text-[11px] text-stone/60">Fine mechanical watches, four families</p>
+                  <Link
+                    href="/collections"
+                    className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-gold transition-opacity hover:opacity-70"
+                  >
+                    View All
+                    <ArrowRight className="h-3 w-3" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Other nav links */}
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -192,6 +259,27 @@ export function Header() {
 
       {menuOpen && (
         <nav className="flex flex-col gap-1 border-t border-border bg-background px-6 py-6 text-foreground lg:hidden">
+          {/* Collections + sub-items */}
+          <Link
+            href="/collections"
+            onClick={() => setMenuOpen(false)}
+            className="py-3 text-sm font-medium uppercase tracking-[0.14em] text-foreground transition-colors duration-300 hover:text-gold"
+          >
+            Collections
+          </Link>
+          <div className="ml-4 flex flex-col gap-0.5 border-l border-hairline pl-4 pb-2">
+            {COLLECTIONS_DROPDOWN.map((col) => (
+              <Link
+                key={col.slug}
+                href={`/collections/${col.slug}`}
+                onClick={() => setMenuOpen(false)}
+                className="py-1.5 text-xs font-medium uppercase tracking-[0.14em] text-stone transition-colors hover:text-gold"
+              >
+                {col.label}
+              </Link>
+            ))}
+          </div>
+
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
